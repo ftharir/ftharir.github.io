@@ -94,7 +94,7 @@
   if (fine && !calm) {
     var root = document.documentElement, tx = 0, ty = 0, gx = 0, gy = 0, raf = 0;
     var follow = function () {
-      gx += (tx - gx) * 0.16; gy += (ty - gy) * 0.16;
+      gx += (tx - gx) * 0.08; gy += (ty - gy) * 0.08;
       root.style.setProperty('--mx', gx.toFixed(1) + 'px');
       root.style.setProperty('--my', gy.toFixed(1) + 'px');
       raf = (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) ? requestAnimationFrame(follow) : 0;
@@ -112,10 +112,10 @@
       }
       if (arch) {
         var nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
-        arch.style.setProperty('--rx', (-ny * 7).toFixed(2) + 'deg');
-        arch.style.setProperty('--ry', (nx * 9).toFixed(2) + 'deg');
-        arch.style.setProperty('--tx', (nx * 12).toFixed(1) + 'px');
-        arch.style.setProperty('--ty', (ny * 10).toFixed(1) + 'px');
+        arch.style.setProperty('--rx', (-ny * 2.2).toFixed(2) + 'deg');
+        arch.style.setProperty('--ry', (nx * 3).toFixed(2) + 'deg');
+        arch.style.setProperty('--tx', (nx * 5).toFixed(1) + 'px');
+        arch.style.setProperty('--ty', (ny * 4).toFixed(1) + 'px');
       }
     }, { passive: true });
   }

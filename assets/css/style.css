@@ -280,22 +280,22 @@ td b { color: var(--ink); }
 /* ---------- pointer effects ---------- */
 body::before {
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0; transition: opacity .6s;
-  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 30%), rgba(224, 69, 123, .16), rgba(185, 163, 232, .05) 45%, transparent 70%);
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgba(224, 69, 123, .055), rgba(185, 163, 232, .015) 50%, transparent 72%);
 }
 html.pointer body::before { opacity: 1; }
 .top-bar { z-index: 50; } .wrap { position: relative; z-index: 1; }
 .card, .t-item, .decide, .step, .box, .stat, .fact, .tile { position: relative; }
 .card::after, .t-item::after, .decide::after, .step::after, .box::after, .stat::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
-  background: radial-gradient(280px circle at var(--cx, 50%) var(--cy, 50%), color-mix(in srgb, var(--a, var(--pink)) 20%, transparent), transparent 70%);
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(300px circle at var(--cx, 50%) var(--cy, 50%), color-mix(in srgb, var(--a, var(--pink)) 6%, transparent), transparent 70%);
 }
 .card:hover::after, .t-item:hover::after, .decide:hover::after, .step:hover::after, .box:hover::after, .stat:hover::after { opacity: 1; }
 .tile i { transition: transform .25s, border-color .25s; }
-.tile:hover i { transform: translateY(-4px) rotate(-4deg); border-color: var(--pink); }
-.arch { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .18s ease-out; will-change: transform; }
-.spark { transform: translate(calc(var(--tx, 0px) * -1.8), calc(var(--ty, 0px) * -1.8)); transition: transform .25s ease-out; animation: twinkle 3.6s ease-in-out infinite; }
+.tile:hover i { transform: translateY(-2px); border-color: var(--pink); }
+.arch { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .35s ease-out; will-change: transform; }
+.spark { transform: translate(calc(var(--tx, 0px) * -1), calc(var(--ty, 0px) * -1)); transition: transform .4s ease-out; animation: twinkle 5s ease-in-out infinite; }
 .spark.s2 { animation-delay: -1.6s; }
-@keyframes twinkle { 0%, 100% { scale: 1; opacity: 1; } 50% { scale: .72; opacity: .65; } }
+@keyframes twinkle { 0%, 100% { scale: 1; opacity: 1; } 50% { scale: .88; opacity: .8; } }
 @media (hover: none), (prefers-reduced-motion: reduce) { .spark { animation: none; } .arch { transform: none; } }
 
 /* ---------- company logo on the timeline ---------- */
