@@ -245,7 +245,7 @@ def page_home():
     body = f'''<section class="hero">
   <div class="arch" aria-hidden="false">
     <span class="spark s1">{SPARK}</span><span class="spark s2">{SPARK}</span>
-    <div class="frame"><img src="/assets/img/avatar-arch.webp" width="480" height="480" alt="Illustrated portrait of Fatemeh at her computer"></div>
+    <div class="frame"><img src="/assets/img/avatar-arch.webp" width="480" height="564" alt="Portrait of Fatemeh Harirforoush"></div>
   </div>
   <div>
     <span class="greet">hi there!</span>
