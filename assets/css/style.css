@@ -251,3 +251,6 @@ footer.site { margin-top: 72px; padding: 24px 0 40px; border-top: 1px solid var(
 }
 @media (max-width: 480px) { .grid-3 { grid-template-columns: 1fr; } .greet { font-size: 2rem; } }
 @media print { .top-bar { display: none; } body { background: #fff; color: #000; } }
+
+/* the filter relies on the hidden attribute; display rules of components must not override it */
+[hidden] { display: none !important; }
