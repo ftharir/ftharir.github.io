@@ -12,7 +12,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from content import (ABOUT_PARAGRAPHS, ACTIVITIES, AREAS, CONTACT_FORM_ENDPOINT, COURSES, EDUCATION, LITERATURE, METHODS, SUPERVISORS, RESEARCH_ABOUT_SURVEY, RESEARCH_INTRO, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
+from content import (ABOUT_PARAGRAPHS, ACTIVITIES, AREAS, CONTACT_FORM_ENDPOINT, COURSES, EDUCATION, LITERATURE, METHODS, RESEARCH_ABOUT_SURVEY, RESEARCH_INTRO, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
                      PUBLICATIONS, RESEARCH, SITE_URL, SKILLS)
 
 from project_details import DETAILS  # noqa: E402
@@ -373,7 +373,6 @@ def page_research():
     survey = "".join(f"<p>{esc(t)}</p>" for t in RESEARCH_ABOUT_SURVEY)
     methods = "".join(
         f'<div class="card compact c-{col} reveal"><h3>{esc(name)}</h3><p>{esc(text)}</p></div>' for name, col, text in METHODS)
-    sups = "".join(f'<div class="card compact c-{col} reveal"><h3>{esc(n)}</h3><p>{esc(r)}</p></div>' for (n, r), col in zip(SUPERVISORS, ["lav", "pink", "butter", "green"]))
     body = f'''<h1>Research &amp; <em>academic</em> work</h1>
 <p class="lead">Research roles at Sharif University of Technology and the Sharif Center for Information Systems and Data Science, and the survey that came out of them.</p>
 <div class="grid-3">
@@ -383,9 +382,6 @@ def page_research():
 </div>
 <h2>What I research</h2>
 <div class="box sand reveal">{intro}</div>
-<h2>Research supervisors</h2>
-<p class="muted" style="margin-top:-6px">I worked under the guidance of these professors; their roles are listed with each position below.</p>
-<div class="cards">{sups}</div>
 <h2>Publication</h2>
 {pubs}
 <div class="box reveal" style="margin-top:16px"><h3>About the survey</h3>{survey}</div>

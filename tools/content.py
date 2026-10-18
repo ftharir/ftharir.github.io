@@ -501,10 +501,3 @@ LITERATURE = [
     "Graph neural networks and functional connectivity in neuroimaging",
     "Molecular representation learning and 3D structure",
 ]
-
-SUPERVISORS = [
-    ("Dr. Mohammad Hossein Rohban", "LLM and maintenance research; molecular structures lab task"),
-    ("Dr. Siavash Ahmadi", "LLM and maintenance research; computer vision for quadcopters"),
-    ("Dr. Babak Khalaj", "LLM and maintenance research; co-author of the survey"),
-    ("Dr. Mohammad Reza Hoseinkhani", "Neuroimaging and computer vision for mental-state estimation"),
-]
