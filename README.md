@@ -3,7 +3,7 @@
 Personal portfolio of **Fatemeh Harirforoush** — AI Software Engineer · Machine Learning Engineer.
 Live at <https://ftharir.github.io>.
 
-A soft pastel, multi-page site: home, about, experience, research and publications, a filterable projects page with one case study per project, skills, education and contact. Plain HTML, CSS and a little JavaScript — **no framework and no build step on the server**; GitHub Pages serves the files as they are.
+A dark, minimal, deep-pink multi-page site (inspired by a one-page CV layout: pill section labels, arch portrait, outlined skill chips): home, about, experience, research and publications, a filterable projects page with one case study per project, skills, education and contact. Plain HTML, CSS and a little JavaScript — **no framework and no build step on the server**; GitHub Pages serves the files as they are.
 
 ## Pages
 
@@ -55,7 +55,7 @@ While `CONTACT_FORM_ENDPOINT` is empty, the form opens the visitor's email app w
 
 ## Design notes
 
-* Layout: icon rail on the left, content in the middle, profile panel on the right; on small screens the rail becomes a bottom bar and the panel moves below the content.
+* Layout: sticky top bar with the navigation; the home page is a CV-style overview (two columns of Education, Experience, Skills, Tools and Research) followed by the featured projects; every other page is a single readable column. On small screens the columns stack and the menu scrolls sideways.
 * Accessibility: semantic landmarks, skip link, visible focus, keyboard-friendly filters, `prefers-reduced-motion` respected, sufficient contrast.
 * SEO: titles and descriptions per page, canonical links, Open Graph tags, `sitemap.xml`, `robots.txt`, JSON-LD (`Person`) on the home page.
 * No tracking, no cookies. The only external request is the DM Sans web font from Google Fonts.

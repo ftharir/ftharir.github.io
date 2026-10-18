@@ -40,6 +40,7 @@ ICONS = {
     "linkedin": '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
     "arrow": '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
     "copy": '<rect x="8" y="8" width="12" height="12" rx="2.500"/><path d="M16 8V6.500A2.500 2.500 0 0 0 13.500 4h-7A2.500 2.500 0 0 0 4 6.500v7A2.500 2.500 0 0 0 6.500 16H8"/>',
+    "pin": '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
     "star": '<path d="m12 3.500 2.700 5.500 6 .9-4.400 4.200 1 6-5.300-2.800-5.300 2.800 1-6L3.300 9.900l6-.9z"/>',
 }
 
@@ -76,32 +77,13 @@ def project_card(p, extra=""):
             f'<span class="more">Read the case study {icon("arrow", "btn-icon")}</span></a>')
 
 
-def panel():
-    counts = {k: sum(1 for p in PROJECTS if k in p["areas"]) for k, _, _ in AREAS}
-    top = max(counts.values())
-    bars = "".join(
-        f'<div class="bar"><span>{esc(lbl)}</span><i style="--c:{COLOR_VAR[col]};--w:{counts[k] / top * 100:.0f}%"></i><em>{counts[k]}</em></div>'
-        for k, lbl, col in AREAS)
-    return f'''<aside class="panel" aria-label="Profile summary"><div class="panel-inner">
-<section class="p-card profile">
-  <img class="avatar" src="/assets/img/avatar.webp" width="104" height="104" alt="Illustrated portrait of Fatemeh">
-  <h2>{esc(PROFILE["name"])}</h2>
-  <p class="role">{esc(PROFILE["role"])}<br>{esc(PROFILE["location"])}</p>
-  <div class="socials">
-    <a href="{PROFILE["github"]}" rel="me noopener" target="_blank">{icon("github")}GitHub</a>
-    <a href="{PROFILE["linkedin"]}" rel="me noopener" target="_blank">{icon("linkedin")}LinkedIn</a>
-    <a href="mailto:{PROFILE["email"]}">{icon("mail")}Email</a>
-  </div>
-</section>
-<section class="p-card"><h4>Projects by area <small>{len(PROJECTS)} total</small></h4><div class="bars">{bars}</div></section>
-<section class="p-card now"><h4>Right now</h4><p><b>AI Software Engineering Intern</b>Building an LLM-based technical resume evaluation service at Sharif Setup, after delivering an AI data labeling platform.</p><small>August 2026 – present</small></section>
-</div></aside>'''
+SPARK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.8 6.2 5.8 11.2 12 12-6.2.8-11.2 5.8-12 12-.8-6.2-5.8-11.2-12-12C6.2 11.2 11.2 6.2 12 0z" fill="currentColor"/></svg>'
 
 
 def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/img/avatar.webp"):
     nav = "".join(
-        f'<a class="nav" href="{href}" data-label="{label}" aria-label="{label}"{" aria-current=\"page\"" if (path == href or (href != "/" and path.startswith(href))) else ""}>{icon(ic)}</a>'
-        for href, label, ic in NAV)
+        f'<a href="{href}"{" aria-current=\"page\"" if (path == href or (href != "/" and path.startswith(href))) else ""}>{label}</a>'
+        for href, label, _ in NAV)
     crumb_html = ""
     if crumbs:
         parts = []
@@ -122,29 +104,25 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <link rel="canonical" href="{SITE_URL}{path}">
 <meta property="og:type" content="website"><meta property="og:title" content="{esc(full_title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{SITE_URL}{path}"><meta property="og:image" content="{SITE_URL}{og_image}"><meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#c6efdd">
+<meta name="theme-color" content="#120d12"><meta name="color-scheme" content="dark">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css?v={ver("assets/css/style.css")}">
 {ld}
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
-<div class="shell">
-  <header class="rail"><div class="rail-inner">
-    <a class="logo" href="/" aria-label="Home">FH</a>
-    <nav aria-label="Main">{nav}</nav>
-    <img class="avatar-mini" src="/assets/img/avatar.webp" width="44" height="44" alt="">
-  </div></header>
-  <main id="content">
-    {crumb_html}
-    {body}
-    <footer class="site"><span>© 2026 {esc(PROFILE["name"])}</span><span>Designed and built by hand · static site on GitHub Pages</span></footer>
-  </main>
-  {panel()}
-</div>
+<header class="top-bar"><div class="top-inner">
+  <a class="brand" href="/" aria-label="Home"><span class="mark">FH</span><span class="name">{esc(PROFILE["name"])}</span></a>
+  <nav class="nav" aria-label="Main">{nav}</nav>
+</div></header>
+<div class="wrap"><main id="content">
+{crumb_html}
+{body}
+<footer class="site"><span>© 2026 {esc(PROFILE["name"])}</span><span>{esc(PROFILE["location"])} · static site on GitHub Pages</span></footer>
+</main></div>
 <script src="/assets/js/main.js?v={ver("assets/js/main.js")}" defer></script>
 </body>
 </html>
@@ -162,24 +140,76 @@ def write(path, content):
 def page_home():
     order = ["ai-resume-evaluation-service", "ai-data-labeling-platform", "industrial-gauge-localization", "explainable-skin-disease-classification", "voiceledger", "telegram-services-platform"]
     featured = [next(p for p in PROJECTS if p["slug"] == k) for k in order]
-    pills = "".join(f'<a href="{href}">{esc(label)}</a>' for href, label, _ in NAV[2:])
-    body = f'''<p class="eyebrow">Hello, I'm Fatemeh</p>
-<h1>AI systems, from <em>messy data</em> to a working product.</h1>
-<p class="lead">{esc(PROFILE["summary"])}</p>
-<div class="btn-row"><a class="btn" href="/projects/">See my projects {icon("arrow")}</a><a class="btn ghost" href="/contact/">Get in touch</a></div>
-<h2>Explore</h2>
-<div class="pills">{pills}</div>
-<h2>Featured projects</h2>
-<div class="cards">{"".join(project_card(p) for p in featured)}</div>
-<p style="margin-top:18px"><a class="btn ghost" href="/projects/">All {len(PROJECTS)} projects {icon("arrow")}</a></p>
-<h2>At a glance</h2>
-<div class="grid-3">
-  <div class="stat c-pink reveal"><b>{len(PROJECTS)}</b><span>documented projects with results</span></div>
-  <div class="stat c-lav reveal"><b>{len(RESEARCH)}</b><span>research roles and tasks</span></div>
-  <div class="stat c-green reveal"><b>1</b><span>manuscript under review (Q1 journal)</span></div>
+    tools = [("Py", "Python"), ("PT", "PyTorch"), ("TF", "TensorFlow"), ("sk", "scikit-learn"), ("Pd", "pandas"), ("CV", "OpenCV"),
+             ("Fa", "FastAPI"), ("Pg", "PostgreSQL"), ("Dk", "Docker"), ("Gi", "Git")]
+    tiles = "".join(f'<div class="tile"><i>{a}</i><span>{esc(b_)}</span></div>' for a, b_ in tools)
+    skills = ["Machine learning", "Deep learning", "Computer vision", "LLMs and RAG", "Data analysis", "Backend and APIs", "Explainable AI", "Graph neural networks"]
+    skill_chips = "".join(f'<li class="chip">{esc(s_)}</li>' for s_ in skills)
+    body = f'''<section class="hero">
+  <div class="arch" aria-hidden="false">
+    <span class="spark s1">{SPARK}</span><span class="spark s2">{SPARK}</span>
+    <div class="frame"><img src="/assets/img/avatar-arch.webp" width="480" height="480" alt="Illustrated portrait of Fatemeh at her computer"></div>
+  </div>
+  <div>
+    <span class="greet">hi there!</span>
+    <p class="intro">I am <b>Fatemeh Harirforoush</b>, an AI software engineer and machine learning engineer. I build end-to-end intelligent systems, from messy data to a working product, and I check honestly whether they work.</p>
+    <hr class="rule">
+    <ul class="contact-lines">
+      <li>{icon("github")}<a href="{PROFILE["github"]}" rel="me noopener" target="_blank">github.com/ftharir</a></li>
+      <li>{icon("linkedin")}<a href="{PROFILE["linkedin"]}" rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li>{icon("mail")}<a href="mailto:{PROFILE["email"]}">{esc(PROFILE["email"])}</a></li>
+      <li>{icon("pin")}<span>{esc(PROFILE["location"])}</span></li>
+    </ul>
+    <div class="now-chip"><i></i>Now: building an LLM-based resume evaluation service at Sharif Setup</div>
+    <div class="btn-row" style="margin-top:24px"><a class="btn" href="/projects/">See my projects {icon("arrow")}</a><a class="btn ghost" href="/contact/">Get in touch</a></div>
+  </div>
+</section>
+
+<div class="cols">
+  <div>
+    <h2 class="tag c-lav">Education</h2>
+    <div class="entry reveal"><div class="when">2022 – 2026</div><b>B.Sc. in Computer Engineering</b><span>Science and Research University, Tehran</span></div>
+    <div class="entry reveal"><div class="when">2023 – 2024</div><b>Auditing student, advanced AI and ML courses</b><span>Sharif University of Technology</span></div>
+    <div class="entry reveal"><div class="when">2019 – 2022</div><b>Associate degree in Mathematical Physics</b><span>Sampad Tizhooshan Farzanegan 2, Ahwaz</span></div>
+    <p><a class="btn ghost" href="/education/">Education {icon("arrow")}</a></p>
+
+    <h2 class="tag c-green" style="margin-top:44px">Experience</h2>
+    <div class="entry reveal"><div class="when">2026 – present</div><b>AI Software Engineering Intern · Project Owner</b><span>Sharif Setup, generative AI startup</span></div>
+    <div class="entry reveal"><div class="when">2023 – 2024</div><b>Data Scientist Bootcamp trainee</b><span>Fanap, selected through Quera's Hafez competition</span></div>
+    <div class="entry reveal"><div class="when">2026</div><b>Freelance AI software engineer</b><span>Voice-report assistant, Telegram platform, cost allocation</span></div>
+    <p><a class="btn ghost" href="/experience/">Experience {icon("arrow")}</a></p>
+  </div>
+  <div>
+    <h2 class="tag c-butter">Skills</h2>
+    <ul class="chips" style="margin-top:0">{skill_chips}</ul>
+    <h2 class="tag c-pink" style="margin-top:44px">Tools</h2>
+    <div class="tiles">{tiles}</div>
+    <p style="margin-top:18px"><a class="btn ghost" href="/skills/">All skills {icon("arrow")}</a></p>
+
+    <h2 class="tag c-lav" style="margin-top:44px">Research</h2>
+    <div class="mini-timeline">
+      <div class="entry reveal"><div class="when">2025 – 2026</div><b>AI Researcher</b><span>Predictive maintenance: Transformers, PINNs, diffusion models</span></div>
+      <div class="entry reveal"><div class="when">2024 – 2025</div><b>Research Assistant, computer vision</b><span>Detection and tracking for quadcopters</span></div>
+      <div class="entry reveal"><div class="when">2024 – 2025</div><b>Research Assistant, neuroimaging</b><span>fMRI and graph neural networks</span></div>
+      <div class="entry reveal"><div class="when">2026</div><b>Survey on RAG for maintenance decisions</b><span>SSRN preprint, under review at a Q1 journal</span></div>
+    </div>
+    <p><a class="btn ghost" href="/research/">Research {icon("arrow")}</a></p>
+  </div>
 </div>
-<h2>What I care about</h2>
-<div class="box sand reveal"><p>Evaluation that does not flatter the model: leakage checks, held-out test sets, baselines and error analysis. Several projects document exactly where a first, higher score turned out to be wrong.</p>{chips(PROFILE["values"])}</div>'''
+
+<section class="block">
+  <h2 class="tag c-peach">Projects</h2>
+  <div class="cards">{"".join(project_card(p) for p in featured)}</div>
+  <p style="margin-top:20px"><a class="btn" href="/projects/">All {len(PROJECTS)} projects {icon("arrow")}</a></p>
+</section>
+
+<section class="block">
+  <div class="box c-pink reveal" style="text-align:center;padding:44px 28px">
+    <h3 style="font-family:var(--serif);font-weight:400;font-size:2.3rem;margin-bottom:10px">Have an idea, a project, or just a hello?</h3>
+    <p class="muted" style="margin-bottom:22px">For collaboration, or even just to say hi.</p>
+    <a class="btn" href="/contact/">Send me a message {icon("arrow")}</a>
+  </div>
+</section>'''
     ld = {"@context": "https://schema.org", "@type": "Person", "name": PROFILE["name"], "jobTitle": "AI Software Engineer",
           "url": SITE_URL + "/", "sameAs": [PROFILE["github"], PROFILE["linkedin"]], "address": {"@type": "PostalAddress", "addressLocality": "Tehran", "addressCountry": "IR"}}
     return shell(f"{PROFILE['name']} — AI Software Engineer", PROFILE["summary"], "/", body, jsonld=ld)
@@ -403,8 +433,8 @@ def prepare_images():
 
 
 def write_static():
-    favicon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#1c1a1f"/>'
-               '<text x="32" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#c6efdd">FH</text></svg>')
+    favicon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#e0457b"/>'
+               '<text x="32" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#ffffff">FH</text></svg>')
     open(os.path.join(ROOT, "favicon.svg"), "w", encoding="utf-8").write(favicon)
     open(os.path.join(ROOT, ".nojekyll"), "w").write("")
     open(os.path.join(ROOT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
