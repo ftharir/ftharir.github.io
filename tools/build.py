@@ -271,12 +271,8 @@ def page_research():
     survey = "".join(f"<p>{esc(t)}</p>" for t in RESEARCH_ABOUT_SURVEY)
     methods = "".join(
         f'<div class="card compact c-{col} reveal"><h3>{esc(name)}</h3><p>{esc(text)}</p></div>' for name, col, text in METHODS)
-    acts = "".join(
-        f'<article class="t-item reveal" style="--dot:{COLOR_VAR[a_["color"]]}"><div class="t-meta"><span class="pill">{esc(a_["period"])}</span></div>'
-        f'<h3>{esc(a_["title"])}</h3><p class="org">{esc(a_["org"])}</p>{"<p>" + esc(a_["text"]) + "</p>" if a_["text"] else ""}</article>' for a_ in ACTIVITIES)
-    courses = "".join(f'<li class="chip">{esc(t)} · {esc(p)}</li>' for t, p in COURSES)
     body = f'''<h1>Research &amp; <em>academic</em> work</h1>
-<p class="lead">Research roles at Sharif University of Technology and the Sharif Center for Information Systems and Data Science, the survey that came out of them, and the academic activities around them.</p>
+<p class="lead">Research roles at Sharif University of Technology and the Sharif Center for Information Systems and Data Science, and the survey that came out of them.</p>
 <div class="grid-3">
   <div class="stat c-lav reveal"><b>{len(RESEARCH)}</b><span>research roles and tasks</span></div>
   <div class="stat c-pink reveal"><b>1</b><span>survey: SSRN preprint, under review at a Q1 journal</span></div>
@@ -292,15 +288,11 @@ def page_research():
 <h2>Methods I worked with, in short</h2>
 <p class="muted" style="margin-top:-6px">Plain-language background for the methods named above; these are explanations, not results.</p>
 <div class="cards">{methods}</div>
-<h2>Academic activities</h2>
-<div class="timeline">{acts}</div>
-<h2>Courses and workshops</h2>
-<div class="box reveal"><ul class="chips" style="margin:0">{courses}</ul></div>
 <h2>Literature areas I studied</h2>
 <div class="box reveal">{chips(LITERATURE)}</div>
 <h2>Research topics</h2>
 <div class="box reveal">{chips(["Predictive maintenance", "Prescriptive maintenance", "Transformers", "Contrastive learning", "Physics-informed neural networks", "Diffusion models", "Retrieval-augmented generation", "Explainable AI", "Graph neural networks", "fMRI and functional connectivity", "Object detection and tracking", "Molecular structures"])}</div>'''
-    return shell("Research", "Research experience and publications: predictive maintenance, computer vision for quadcopters, neuroimaging with graph neural networks, molecular structures, and academic activities.", "/research/", body,
+    return shell("Research", "Research experience and publications: predictive maintenance, computer vision for quadcopters, neuroimaging with graph neural networks, molecular structures, ", "/research/", body,
                  crumbs=[("Home", "/"), ("Research", None)])
 
 
@@ -371,11 +363,19 @@ def page_education():
     cards = "".join(
         f'<article class="t-item reveal" style="--dot:{COLOR_VAR[e["color"]]}"><div class="t-meta"><span class="pill">{esc(e["period"])}</span></div><h3>{esc(e["title"])}</h3>'
         f'<p class="org">{esc(e["org"])}</p>{"<p>" + esc(e["text"]) + "</p>" if e["text"] else ""}</article>' for e in EDUCATION)
+    acts = "".join(
+        f'<article class="t-item reveal" style="--dot:{COLOR_VAR[a_["color"]]}"><div class="t-meta"><span class="pill">{esc(a_["period"])}</span></div>'
+        f'<h3>{esc(a_["title"])}</h3><p class="org">{esc(a_["org"])}</p>{"<p>" + esc(a_["text"]) + "</p>" if a_["text"] else ""}</article>' for a_ in ACTIVITIES)
+    courses = "".join(f'<li class="chip">{esc(t)} · {esc(p)}</li>' for t, p in COURSES)
     body = f'''<h1><em>Education</em></h1>
-<p class="lead">A computer engineering degree, extended with advanced AI courses and a competitive data-science bootcamp.</p>
+<p class="lead">A computer engineering degree, extended with advanced AI courses, a competitive data-science bootcamp, student projects and online courses.</p>
 <div class="timeline">{cards}</div>
 <h2>Selected programs</h2>
-<div class="box sand reveal"><h3>Data Scientist Bootcamp, Fanap</h3><p>Selected through Quera's Hafez competition, December 2023 – September 2024.</p></div>'''
+<div class="box sand reveal"><h3>Data Scientist Bootcamp, Fanap</h3><p>Selected through Quera's Hafez competition, December 2023 – September 2024.</p></div>
+<h2>Academic activities</h2>
+<div class="timeline">{acts}</div>
+<h2>Courses and workshops</h2>
+<div class="box reveal"><ul class="chips" style="margin:0">{courses}</ul></div>'''
     return shell("Education", "Education: B.Sc. Computer Engineering, audited AI courses at Sharif University of Technology, associate degree in mathematical physics.", "/education/", body,
                  crumbs=[("Home", "/"), ("Education", None)])
 

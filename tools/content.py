@@ -430,8 +430,8 @@ SKILLS = [
 EDUCATION = [
     {"title": "B.Sc. in Computer Engineering", "org": "Science and Research University, Tehran", "period": "September 2022 – September 2026", "color": "peach",
      "text": "Bachelor thesis: explainable deep learning for facial skin-lesion classification."},
-    {"title": "Academic coursework (auditing student)", "org": "Sharif University of Technology, Tehran", "period": "alongside the degree", "color": "lav",
-     "text": "Audited advanced AI and machine-learning courses."},
+    {"title": "Academic coursework (auditing student)", "org": "Sharif University of Technology, Tehran", "period": "September 2023 – April 2024", "color": "lav",
+     "text": "Audited advanced in-person AI and machine-learning courses."},
     {"title": "Associate degree in Mathematical Physics", "org": "Sampad Tizhooshan Farzanegan 2, Ahwaz", "period": "September 2019 – June 2022", "color": "green",
      "text": ""},
 ]
@@ -470,8 +470,6 @@ ACTIVITIES = [
     {"title": "Observer, Machine Learning course CS229", "org": "Amirkabir University of Technology", "period": "from February 2024", "color": "peach", "text": ""},
     {"title": "Head of the IT team, Sadra Job Fair", "org": "University of Science and Research", "period": "January 2024", "color": "sky", "text": ""},
     {"title": "Writing team member, BYTE Magazine", "org": "Computer Engineering Department, Sharif University of Technology", "period": "from August 2023", "color": "butter", "text": ""},
-    {"title": "Auditing student, advanced AI and machine-learning courses", "org": "Sharif University of Technology", "period": "September 2023 – April 2024", "color": "pink",
-     "text": "Attended advanced in-person courses in artificial intelligence and machine learning as an audit student."},
 ]
 
 COURSES = [
