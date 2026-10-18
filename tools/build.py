@@ -16,7 +16,7 @@ from content import (ABOUT_PARAGRAPHS, AREAS, EDUCATION, EXPERIENCE, PROFILE, PR
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 IMAGE_SOURCE = os.environ.get("IMAGE_SOURCE", r"E:\GitHub-backup-ftharir-2026-10-18")
-AVATAR_SOURCE = os.environ.get("AVATAR_SOURCE", r"D:\avatar-for-github\v2\1_bangs_ocean.png")
+AVATAR_SOURCE = os.environ.get("AVATAR_SOURCE", "")  # optional: square image to convert into assets/img/avatar.webp
 
 esc = html.escape
 
@@ -324,7 +324,7 @@ def page_404():
 def prepare_images():
     from PIL import Image
     avatar_out = os.path.join(ROOT, "assets/img/avatar.webp")
-    if os.path.exists(AVATAR_SOURCE):
+    if AVATAR_SOURCE and os.path.exists(AVATAR_SOURCE):
         Image.open(AVATAR_SOURCE).convert("RGB").resize((480, 480), Image.LANCZOS).save(avatar_out, "WEBP", quality=88)
     for p in PROJECTS:
         for src, out, _ in p.get("images", []):
