@@ -309,3 +309,4 @@ html.pointer body::before { opacity: 1; }
 .t-item .sup { margin: 0 0 8px; color: var(--ink-2); font-size: .92rem; }
 .t-item .sup b { color: var(--a, var(--pink)); text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; margin-right: 8px; }
 .t-logo img[src*="icst-sharif"] { width: 100%; height: 100%; object-fit: cover; }
+.t-logo img[src*="sharif-university"] { width: 100%; height: 100%; object-fit: cover; }

@@ -372,7 +372,7 @@ RESEARCH = [
         "role": "Research Assistant — Computer vision",
         "supervisors": "Dr. Siavash Ahmadi",
         "org": "Sharif University of Technology lab",
-        "period": "June 2024 – February 2025", "color": "pink",
+        "period": "June 2024 – February 2025", "color": "pink", "logo": "sharif-university.webp",
         "summary": "Computer vision for quadcopter platforms: seeing and following objects from a moving camera, in real time.",
         "bullets": [
             "Research on computer-vision systems for quadcopter platforms.",
