@@ -506,7 +506,7 @@ def page_education():
         f'<article class="t-item reveal" style="--dot:{COLOR_VAR[e["color"]]}"><div class="t-meta"><span class="pill">{esc(e["period"])}</span></div><h3>{esc(e["title"])}</h3>'
         f'<p class="org">{esc(e["org"])}</p>{"<p>" + esc(e["text"]) + "</p>" if e["text"] else ""}</article>' for e in EDUCATION)
     acts = "".join(
-        f'<article class="t-item reveal" style="--dot:{COLOR_VAR[a_["color"]]}"><div class="t-meta"><span class="pill">{esc(a_["period"])}</span></div>'
+        f'<article class="t-item reveal{" has-logo" if a_.get("logo") else ""}" style="--dot:{COLOR_VAR[a_["color"]]}">{logo_badge(a_)}<div class="t-meta"><span class="pill">{esc(a_["period"])}</span></div>'
         f'<h3>{esc(a_["title"])}</h3><p class="org">{esc(a_["org"])}</p>{"<p>" + esc(a_["text"]) + "</p>" if a_["text"] else ""}'
         + (f'<p style="margin-top:12px"><a class="btn ghost" href="{esc(a_["link"])}" target="_blank" rel="noopener">{esc(a_["link_label"])} {icon("arrow")}</a></p>' if a_.get("link") else "")
         + '</article>' for a_ in ACTIVITIES)

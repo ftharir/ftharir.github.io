@@ -467,7 +467,7 @@ ACTIVITIES = [
     {"title": "Self-driving car team member", "org": "University of Science and Research", "period": "from February 2024", "color": "green",
      "text": "Member of a team building a self-driving car robot for the FIRA 2024 and RoboCup Iran Open 2025 competitions. Task: edge detection with OpenCV (image and video processing, CNNs)."},
     {"title": "Head teaching assistant, Fundamentals of Computational Intelligence", "org": "University of Science and Research", "period": "from February 2024", "color": "lav", "text": ""},
-    {"title": "Observer, Machine Learning course CS229", "org": "Amirkabir University of Technology", "period": "February 2024 – July 2024", "color": "peach", "text": ""},
+    {"title": "Observer, Machine Learning course CS229", "org": "Mahafel Gereh, Amirkabir University of Technology", "period": "February 2024 – July 2024", "color": "peach", "logo": "mahafel-gereh.webp", "text": ""},
     {"title": "Head of the IT team", "org": "Sadra Job Fair, University of Science and Research", "period": "January 2024", "color": "sky", "text": ""},
     {"title": "Writing team member, BYTE Magazine", "org": "Computer Engineering Department, Sharif University of Technology", "period": "November 2023", "color": "butter", "text": "",
      "link": "https://byte-mag.ir/mags/00000001/linus-torvalds-biography/", "link_label": "Read my article: Linus Torvalds' biography"},
