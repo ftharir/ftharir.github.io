@@ -331,7 +331,7 @@ def page_about():
 def logo_badge(it):
     if not it.get("logo"):
         return ""
-    return f'<span class="t-logo"><img src="/assets/img/logos/{it["logo"]}" alt="" width="30" height="30" loading="lazy"></span>'
+    return f'<span class="t-logo"><img src="/assets/img/logos/{it["logo"]}?v={ver("assets/img/logos/" + it["logo"])}" alt="" width="30" height="30" loading="lazy"></span>'
 
 
 def timeline(items, with_kind=True):
