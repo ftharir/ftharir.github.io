@@ -356,7 +356,7 @@ RESEARCH = [
         "role": "AI Researcher — LLMs, Transformers and scientific applications",
         "supervisors": "Dr. Mohammad Hossein Rohban, Dr. Siavash Ahmadi, Dr. Babak Khalaj",
         "org": "Sharif Center for Information Systems and Data Science",
-        "period": "March 2025 – June 2026", "color": "lav",
+        "period": "March 2025 – June 2026", "color": "lav", "logo": "icst-sharif.webp",
         "summary": "Research on keeping industrial equipment healthy: predicting the condition of batteries and bearings with modern deep-learning methods, and surveying how retrieval-augmented language models can turn predictions into maintenance decisions.",
         "bullets": [
             "Research on predictive maintenance for industrial systems, focused on battery and bearing health monitoring.",
