@@ -305,7 +305,7 @@ EXPERIENCE = [
     {
         "role": "AI Software Engineering Intern · Project Owner",
         "org": "Sharif Setup — Generative AI startup",
-        "period": "August 2026 – present", "kind": "12-week internship", "color": "sky", "logo": "sharifsetup.svg",
+        "period": "August 2026 – present", "kind": "12-week internship", "color": "sky", "logo": "sharifsetup.webp",
         "sections": [
             {
                 "title": "AI-powered data labeling platform", "status": "Completed",
