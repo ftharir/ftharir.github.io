@@ -354,6 +354,7 @@ EXPERIENCE = [
 RESEARCH = [
     {
         "role": "AI Researcher — LLMs, Transformers and scientific applications",
+        "supervisors": "Dr. Mohammad Hossein Rohban, Dr. Siavash Ahmadi, Dr. Babak Khalaj",
         "org": "Sharif Center for Information Systems and Data Science",
         "period": "March 2025 – June 2026", "color": "lav",
         "summary": "Research on keeping industrial equipment healthy: predicting the condition of batteries and bearings with modern deep-learning methods, and surveying how retrieval-augmented language models can turn predictions into maintenance decisions.",
@@ -369,6 +370,7 @@ RESEARCH = [
     },
     {
         "role": "Research Assistant — Computer vision",
+        "supervisors": "Dr. Siavash Ahmadi",
         "org": "Sharif University of Technology lab",
         "period": "June 2024 – February 2025", "color": "pink",
         "summary": "Computer vision for quadcopter platforms: seeing and following objects from a moving camera, in real time.",
@@ -381,6 +383,7 @@ RESEARCH = [
     },
     {
         "role": "Research task — 3D molecular structures",
+        "supervisors": "Dr. Mohammad Hossein Rohban",
         "org": "Sharif University of Technology lab",
         "period": "mid-2024", "color": "butter",
         "summary": "A lab task on how the type of generated 3D structure affects molecular property prediction, with the PVD model as the reference.",
@@ -393,6 +396,7 @@ RESEARCH = [
     },
     {
         "role": "Research Assistant — Neuroimaging and computer vision",
+        "supervisors": "Professor Hoseinkhani",
         "org": "School of AI, Sharif University of Technology",
         "period": "July 2024 – January 2025", "color": "green",
         "summary": "Estimating a person's mental state from brain-imaging data, and exploring graph neural networks as a way to represent the brain.",
@@ -496,4 +500,11 @@ LITERATURE = [
     "Segmentation, detection and RGB-D perception",
     "Graph neural networks and functional connectivity in neuroimaging",
     "Molecular representation learning and 3D structure",
+]
+
+SUPERVISORS = [
+    ("Dr. Mohammad Hossein Rohban", "LLM and maintenance research; molecular structures lab task"),
+    ("Dr. Siavash Ahmadi", "LLM and maintenance research; computer vision for quadcopters"),
+    ("Dr. Babak Khalaj", "LLM and maintenance research; co-author of the survey"),
+    ("Professor Hoseinkhani", "Neuroimaging and computer vision for mental-state estimation"),
 ]
