@@ -38,7 +38,7 @@ PROJECTS = [
     {
         "slug": "ai-resume-evaluation-service", "period": "Aug 2026 – now",
         "title": "AI technical resume evaluation service",
-        "color": "sky", "areas": ["ml", "backend"], "label": "Internship · LLM service",
+        "color": "sky", "areas": ["ml", "backend"], "label": "Sharif Setup · LLM service",
         "metric": "in progress",
         "summary": "An LLM-based service that scores candidate resumes against a job description with evidence-based reasoning.",
         "lead": "Internship project at Sharif Setup: a service that evaluates candidate resumes (PDF or DOCX) against job descriptions and team-specific requirements and explains its score instead of counting keywords.",
@@ -61,7 +61,7 @@ PROJECTS = [
     {
         "slug": "ai-data-labeling-platform", "period": "2026",
         "title": "AI-powered data labeling platform",
-        "color": "green", "areas": ["ml", "backend", "speech"], "label": "Internship · ML platform",
+        "color": "green", "areas": ["ml", "backend", "speech"], "label": "Sharif Setup · ML platform",
         "metric": "completed",
         "summary": "A multimodal annotation platform for ASR, OCR and vehicle attributes with AI pseudo-labels and human review.",
         "lead": "Internship project at Sharif Setup, owned end to end: a platform for labeling speech, text-in-image and vehicle-attribute data with AI assistance and human quality control.",
