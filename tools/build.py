@@ -485,8 +485,6 @@ def page_education():
     body = f'''<h1><em>Education</em></h1>
 <p class="lead">A computer engineering degree, extended with advanced AI courses, a competitive data-science bootcamp, student projects and online courses.</p>
 <div class="timeline">{cards}</div>
-<h2>Selected programs</h2>
-<div class="box sand reveal"><h3>Data Scientist Bootcamp, Fanap</h3><p>Selected through Quera's Hafez competition, December 2023 – September 2024.</p></div>
 <h2>Academic activities</h2>
 <div class="timeline">{acts}</div>
 <h2>Courses and workshops</h2>
