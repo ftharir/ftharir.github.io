@@ -86,4 +86,37 @@
         .then(function () { btn.disabled = false; });
     });
   }
+
+  // pointer effects: soft glow that follows the cursor, a spotlight inside cards, a gentle tilt of the portrait.
+  // Only for devices with a real pointer, and never when the visitor asks for reduced motion.
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (fine && !calm) {
+    var root = document.documentElement, tx = 0, ty = 0, gx = 0, gy = 0, raf = 0;
+    var follow = function () {
+      gx += (tx - gx) * 0.16; gy += (ty - gy) * 0.16;
+      root.style.setProperty('--mx', gx.toFixed(1) + 'px');
+      root.style.setProperty('--my', gy.toFixed(1) + 'px');
+      raf = (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) ? requestAnimationFrame(follow) : 0;
+    };
+    var arch = document.querySelector('.arch');
+    window.addEventListener('pointermove', function (e) {
+      tx = e.clientX; ty = e.clientY;
+      if (!raf) { raf = requestAnimationFrame(follow); }
+      root.classList.add('pointer');
+      var host = e.target.closest && e.target.closest('.card, .t-item, .decide, .step, .box, .stat, .fact, .tile');
+      if (host) {
+        var r = host.getBoundingClientRect();
+        host.style.setProperty('--cx', (e.clientX - r.left).toFixed(0) + 'px');
+        host.style.setProperty('--cy', (e.clientY - r.top).toFixed(0) + 'px');
+      }
+      if (arch) {
+        var nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
+        arch.style.setProperty('--rx', (-ny * 7).toFixed(2) + 'deg');
+        arch.style.setProperty('--ry', (nx * 9).toFixed(2) + 'deg');
+        arch.style.setProperty('--tx', (nx * 12).toFixed(1) + 'px');
+        arch.style.setProperty('--ty', (ny * 10).toFixed(1) + 'px');
+      }
+    }, { passive: true });
+  }
 })();

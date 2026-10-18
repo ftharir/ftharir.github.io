@@ -261,3 +261,45 @@ footer.site { margin-top: 72px; padding: 24px 0 40px; border-top: 1px solid var(
 .chip .lico { width: 16px; height: 16px; flex: none; stroke: var(--g, var(--pink)); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tile i img { width: 30px; height: 30px; }
 .card .metric { font-weight: 600; }
+
+/* ---------- case-study sections ---------- */
+.role-line { color: var(--ink-2); margin: -4px 0 18px; font-size: .95rem; }
+.role-line b { color: var(--a, var(--pink)); margin-right: 8px; text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.step { display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: start; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.step .n { width: 40px; height: 40px; border-radius: 50%; background: var(--pink); color: #120d12; display: grid; place-items: center; font-weight: 800; }
+.step h3 { margin-bottom: 4px; font-size: 1.08rem; }
+.step p { margin: 0; color: var(--ink-2); }
+.decisions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.decide { padding: 22px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface-2); }
+.decide h3 { font-size: 1.05rem; color: var(--a, var(--pink)); }
+.decide p { margin: 0; color: var(--ink-2); font-size: .95rem; }
+td b { color: var(--ink); }
+@media (max-width: 760px) { .decisions { grid-template-columns: 1fr; } .step { grid-template-columns: 38px 1fr; gap: 14px; } }
+
+/* ---------- pointer effects ---------- */
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0; transition: opacity .6s;
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 30%), rgba(224, 69, 123, .16), rgba(185, 163, 232, .05) 45%, transparent 70%);
+}
+html.pointer body::before { opacity: 1; }
+.top-bar { z-index: 50; } .wrap { position: relative; z-index: 1; }
+.card, .t-item, .decide, .step, .box, .stat, .fact, .tile { position: relative; }
+.card::after, .t-item::after, .decide::after, .step::after, .box::after, .stat::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(280px circle at var(--cx, 50%) var(--cy, 50%), color-mix(in srgb, var(--a, var(--pink)) 20%, transparent), transparent 70%);
+}
+.card:hover::after, .t-item:hover::after, .decide:hover::after, .step:hover::after, .box:hover::after, .stat:hover::after { opacity: 1; }
+.tile i { transition: transform .25s, border-color .25s; }
+.tile:hover i { transform: translateY(-4px) rotate(-4deg); border-color: var(--pink); }
+.arch { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .18s ease-out; will-change: transform; }
+.spark { transform: translate(calc(var(--tx, 0px) * -1.8), calc(var(--ty, 0px) * -1.8)); transition: transform .25s ease-out; animation: twinkle 3.6s ease-in-out infinite; }
+.spark.s2 { animation-delay: -1.6s; }
+@keyframes twinkle { 0%, 100% { scale: 1; opacity: 1; } 50% { scale: .72; opacity: .65; } }
+@media (hover: none), (prefers-reduced-motion: reduce) { .spark { animation: none; } .arch { transform: none; } }
+
+/* ---------- company logo on the timeline ---------- */
+.t-item.has-logo::before { display: none; }
+.t-logo { position: absolute; left: -48px; top: 18px; width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 3px solid var(--bg); display: grid; place-items: center; overflow: hidden; box-shadow: 0 0 0 2px var(--line); }
+.t-logo img { width: 26px; height: 26px; object-fit: contain; }
+@media (max-width: 760px) { .timeline { padding-left: 34px; } .t-logo { left: -40px; width: 34px; height: 34px; } .t-logo img { width: 22px; height: 22px; } }
