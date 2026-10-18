@@ -15,6 +15,11 @@ sys.path.insert(0, os.path.dirname(__file__))
 from content import (ABOUT_PARAGRAPHS, ACTIVITIES, AREAS, CONTACT_FORM_ENDPOINT, COURSES, EDUCATION, LITERATURE, METHODS, RESEARCH_ABOUT_SURVEY, RESEARCH_INTRO, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
                      PUBLICATIONS, RESEARCH, SITE_URL, SKILLS)
 
+from project_details import DETAILS  # noqa: E402
+
+for _p in PROJECTS:
+    _p.update(DETAILS.get(_p["slug"], {}))
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 IMAGE_SOURCE = os.environ.get("IMAGE_SOURCE", r"E:\GitHub-backup-ftharir-2026-10-18")
 AVATAR_SOURCE = os.environ.get("AVATAR_SOURCE", "")  # optional: square image to convert into assets/img/avatar.webp
@@ -294,6 +299,12 @@ def page_about():
     return shell("About", PROFILE["summary"], "/about/", body, crumbs=[("Home", "/"), ("About", None)])
 
 
+def logo_badge(it):
+    if not it.get("logo"):
+        return ""
+    return f'<span class="t-logo"><img src="/assets/img/logos/{it["logo"]}" alt="" width="30" height="30" loading="lazy"></span>'
+
+
 def timeline(items, with_kind=True):
     out = []
     for it in items:
@@ -305,11 +316,11 @@ def timeline(items, with_kind=True):
                 lnk = f'<p><a class="btn ghost" href="{sec["link"]}">Read the case study {icon("arrow")}</a></p>' if sec.get("link") else ""
                 inner += (f'<div class="sub"><h4>{esc(sec["title"])} <span class="status {state}">{esc(sec["status"])}</span></h4>'
                           f'{ticks(sec["bullets"])}{chips(sec["tech"])}{lnk}</div>')
-            out.append(f'<article class="t-item reveal" style="--dot:{COLOR_VAR[it["color"]]}"><div class="t-meta">{meta}</div>'
+            out.append(f'<article class="t-item reveal{" has-logo" if it.get("logo") else ""}" style="--dot:{COLOR_VAR[it["color"]]}">{logo_badge(it)}<div class="t-meta">{meta}</div>'
                        f'<h3>{esc(it["role"])}</h3><p class="org">{esc(it["org"])}</p>{inner}</article>')
             continue
         link = f'<p><a class="btn ghost" href="{it["link"]}">Read the case study {icon("arrow")}</a></p>' if it.get("link") else ""
-        out.append(f'<article class="t-item reveal" style="--dot:{COLOR_VAR[it["color"]]}"><div class="t-meta">{meta}</div>'
+        out.append(f'<article class="t-item reveal{" has-logo" if it.get("logo") else ""}" style="--dot:{COLOR_VAR[it["color"]]}">{logo_badge(it)}<div class="t-meta">{meta}</div>'
                    f'<h3>{esc(it["role"])}</h3><p class="org">{esc(it["org"])}</p>' + (f'<p class="summary">{esc(it["summary"])}</p>' if it.get("summary") else "") + f'{ticks(it["bullets"])}{chips(it["tech"])}{link}</article>')
     return '<div class="timeline">' + "".join(out) + "</div>"
 
@@ -377,19 +388,53 @@ def flow_html(steps):
 
 
 def page_project(i, p):
-    facts = "".join(f'<div class="fact"><b>{esc(a)}</b><span>{esc(b)}</span></div>' for a, b in p["facts"])
-    results = ticks(p["results"])
+    facts = "".join(f'<div class="fact"><b>{esc(a_)}</b><span>{esc(b_)}</span></div>' for a_, b_ in p["facts"])
+    repo_btn = (f'<a class="btn" href="{PROFILE["github"]}/{p["repo"]}" target="_blank" rel="noopener">{icon("github")} View on GitHub</a>'
+                if p.get("repo") else '<span class="pill dark">Company project · no public repository</span>')
+    role = f'<p class="role-line"><b>Role</b> {esc(p["role"])}</p>' if p.get("role") else ""
+
+    if p.get("overview"):
+        intro = '<h2 style="margin-top:8px">Overview</h2><div class="box reveal">' + "".join(f"<p>{esc(t)}</p>" for t in p["overview"]) + "</div>"
+    else:
+        intro = f'<h2 style="margin-top:8px">The problem</h2><p>{esc(p["problem"])}</p>'
+
+    approach = ""
+    if p.get("approach"):
+        steps = "".join(f'<li class="step reveal"><span class="n">{n}</span><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></li>' for n, (t, d) in enumerate(p["approach"], 1))
+        approach = f'<h2>Approach</h2><ol class="steps">{steps}</ol>'
+    elif p.get("built"):
+        approach = f'<h2>What I built</h2>{ticks(p["built"])}'
+
+    decisions = ""
+    if p.get("decisions"):
+        cards = "".join(f'<div class="decide reveal"><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in p["decisions"])
+        decisions = f'<h2>Key decisions</h2><div class="decisions c-{p["color"]}">{cards}</div>'
+
+    results = ""
+    if p.get("table"):
+        rows = "".join(f"<tr><td>{esc(a_)}</td><td>{esc(b_)}</td><td>{esc(c_)}</td></tr>" for a_, b_, c_ in p["table"])
+        results = f'<h2>{esc(p.get("metrics_title", "Original versus follow-up"))}</h2><table><thead><tr><th>Project</th><th>Original</th><th>Follow-up</th></tr></thead><tbody>{rows}</tbody></table>'
+    elif p.get("metrics"):
+        rows = "".join(f"<tr><td>{esc(a_)}</td><td><b>{esc(b_)}</b></td><td>{esc(c_)}</td></tr>" for a_, b_, c_ in p["metrics"])
+        results = f'<h2>{esc(p.get("metrics_title", "Results"))}</h2><table><thead><tr><th>Measure</th><th>Value</th><th>Note</th></tr></thead><tbody>{rows}</tbody></table>'
+    elif p.get("results"):
+        results = f'<h2>Results</h2>{ticks(p["results"])}'
+
+    insights = ""
+    if p.get("insights"):
+        cards = "".join(f'<div class="decide reveal"><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in p["insights"])
+        insights = f'<h2>What the analysis showed</h2><div class="decisions c-{p["color"]}">{cards}</div>'
+
+    flow = f'<h2>How it works</h2>{flow_html(p["flow"])}' if p.get("flow") else ""
+
     imgs = ""
     if p.get("images"):
         figs = "".join(f'<figure><img src="/assets/img/projects/{p["slug"]}/{out}" alt="{esc(cap)}" loading="lazy"><figcaption>{esc(cap)}</figcaption></figure>' for _, out, cap in p["images"])
         imgs = f'<h2>Figures</h2><div class="gallery{" one" if (len(p["images"]) == 1 or p.get("gallery") == "one") else ""}">{figs}</div>'
-    flow = f'<h2>How it works</h2>{flow_html(p["flow"])}' if p.get("flow") else ""
-    table = ""
-    if p.get("table"):
-        rows = "".join(f"<tr><td>{esc(a)}</td><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in p["table"])
-        table = f'<h2>Original versus follow-up</h2><table><thead><tr><th>Project</th><th>Original</th><th>Follow-up</th></tr></thead><tbody>{rows}</tbody></table>'
-    repo_btn = (f'<a class="btn" href="{PROFILE["github"]}/{p["repo"]}" target="_blank" rel="noopener">{icon("github")} View on GitHub</a>'
-                if p.get("repo") else '<span class="pill dark">Company project · no public repository</span>')
+
+    limits = f'<h2>Limitations, stated openly</h2>{ticks(p["limits"])}' if p.get("limits") else ""
+    nxt = f'<h2>What is next</h2>{ticks(p["next"])}' if p.get("next") else ""
+
     prev_p, next_p = PROJECTS[i - 1] if i > 0 else None, PROJECTS[i + 1] if i < len(PROJECTS) - 1 else None
     nav = '<div class="next-prev">' + (f'<a class="btn ghost" href="/projects/{prev_p["slug"]}/">← {esc(prev_p["title"])}</a>' if prev_p else "<span></span>") + \
           (f'<a class="btn ghost" href="/projects/{next_p["slug"]}/">{esc(next_p["title"])} →</a>' if next_p else "<span></span>") + "</div>"
@@ -397,14 +442,20 @@ def page_project(i, p):
 <p class="eyebrow">{esc(p["label"])} · {esc(p["period"])}</p>
 <h1>{esc(p["title"])}</h1>
 <p class="lead">{esc(p["lead"])}</p>
+{role}
 <div class="facts">{facts}</div>
 {chips(p["tech"])}
 <div class="btn-row" style="margin-top:18px">{repo_btn}<a class="btn ghost" href="/projects/">All projects</a></div>
 </section>
-<h2 style="margin-top:8px">The problem</h2><p>{esc(p["problem"])}</p>
-<h2>What I built</h2>{ticks(p["built"])}
-<h2>Results</h2>{results}
-{flow}{table}{imgs}
+{intro}
+{approach}
+{decisions}
+{results}
+{insights}
+{flow}
+{imgs}
+{limits}
+{nxt}
 {nav}'''
     return shell(p["title"], p["lead"], f"/projects/{p['slug']}/", body,
                  crumbs=[("Home", "/"), ("Projects", "/projects/"), (p["title"], None)])

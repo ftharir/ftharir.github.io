@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css?v=e73b4913">
+<link rel="stylesheet" href="/assets/css/style.css?v=674b8b98">
 
 </head>
 <body>
@@ -30,17 +30,23 @@
 <p class="eyebrow">Internship · ML platform · 2026</p>
 <h1>AI-powered data labeling platform</h1>
 <p class="lead">Internship project at Sharif Setup, owned end to end: a platform for labeling speech, text-in-image and vehicle-attribute data with AI assistance and human quality control.</p>
+<p class="role-line"><b>Role</b> Project owner · AI Software Engineering Intern, Sharif Setup</p>
 <div class="facts"><div class="fact"><b>3</b><span>labeling pipelines: ASR, OCR, vehicle attributes</span></div><div class="fact"><b>Streamlit</b><span>annotation interface</span></div><div class="fact"><b>PostgreSQL</b><span>database</span></div><div class="fact"><b>Completed</b><span>status</span></div></div>
 <ul class="chips"><li class="chip">Python</li><li class="chip">Streamlit</li><li class="chip">PostgreSQL</li><li class="chip">SQLAlchemy</li><li class="chip">Docker</li><li class="chip">Docker Compose</li><li class="chip">Git</li></ul>
 <div class="btn-row" style="margin-top:18px"><span class="pill dark">Company project · no public repository</span><a class="btn ghost" href="/projects/">All projects</a></div>
 </section>
-<h2 style="margin-top:8px">The problem</h2><p>Training ASR, OCR and vehicle-attribute models needs labeled data, and labeling everything by hand is slow. The platform combines AI-generated pseudo-labels with human correction and quality control.</p>
-<h2>What I built</h2><ul class="ticks"><li>The complete software architecture, from system design to deployment: application structure, database schema, authentication and core workflows.</li><li>A Streamlit-based multimodal annotation platform supporting ASR, OCR and vehicle attribute recognition pipelines.</li><li>AI-based pseudo-labeling, human-in-the-loop correction and quality-control workflows.</li><li>Docker and Docker Compose deployment.</li></ul>
-<h2>Results</h2><ul class="ticks"><li>Delivered end to end as project owner, as part of the 12-week internship.</li><li>Company project: there is no public repository.</li></ul>
+<h2 style="margin-top:8px">Overview</h2><div class="box reveal"><p>Models for speech recognition (ASR), text in images (OCR) and vehicle attributes all need labeled data, and labeling everything by hand is slow and uneven. This platform makes the work faster and more reliable: AI proposes labels (pseudo-labels), people correct them, and quality-control workflows check the result.</p><p>I owned the project end to end during the 12-week internship: system design, application structure, database schema, authentication, the core workflows and deployment.</p></div>
+<h2>Approach</h2><ol class="steps"><li class="step reveal"><span class="n">1</span><div><h3>System design</h3><p>Application structure, database schema and authentication designed first, so the three data types could share one platform.</p></div></li><li class="step reveal"><span class="n">2</span><div><h3>Multimodal annotation</h3><p>A Streamlit interface supports three pipelines: ASR (audio), OCR (images with text) and vehicle attribute recognition.</p></div></li><li class="step reveal"><span class="n">3</span><div><h3>AI pseudo-labeling</h3><p>A model pre-labels each item, so annotators start from a proposal instead of a blank field.</p></div></li><li class="step reveal"><span class="n">4</span><div><h3>Human in the loop</h3><p>Annotators review and correct the proposals; the corrections are what end up in the dataset.</p></div></li><li class="step reveal"><span class="n">5</span><div><h3>Quality control</h3><p>Dedicated workflows check labeled items before they are accepted.</p></div></li><li class="step reveal"><span class="n">6</span><div><h3>Deployment</h3><p>Packaged with Docker and Docker Compose, backed by PostgreSQL through SQLAlchemy.</p></div></li></ol>
+<h2>Key decisions</h2><div class="decisions c-green"><div class="decide reveal"><h3>Pseudo-labels plus people</h3><p>Fully automatic labels propagate the model&#x27;s own mistakes; fully manual labels are slow. The combination keeps speed and accountability.</p></div><div class="decide reveal"><h3>One platform for three modalities</h3><p>Shared users, projects, datasets and review workflows, with a pipeline per data type, instead of three separate tools.</p></div><div class="decide reveal"><h3>Quality control as a first-class workflow</h3><p>Review is part of the data model and the interface, not an afterthought.</p></div></div>
+<h2>Delivery</h2><table><thead><tr><th>Measure</th><th>Value</th><th>Note</th></tr></thead><tbody><tr><td>Pipelines</td><td><b>3</b></td><td>ASR, OCR, vehicle attributes</td></tr><tr><td>Interface</td><td><b>Streamlit</b></td><td>multimodal annotation</td></tr><tr><td>Storage</td><td><b>PostgreSQL</b></td><td>via SQLAlchemy</td></tr><tr><td>Status</td><td><b>Completed</b></td><td>within the 12-week internship</td></tr></tbody></table>
+
 <h2>How it works</h2><div class="flow"><span>Raw data (audio, images)</span><span class="arrow" aria-hidden="true">→</span><span>AI pseudo-labels</span><span class="arrow" aria-hidden="true">→</span><span>Human correction</span><span class="arrow" aria-hidden="true">→</span><span>Quality control</span><span class="arrow" aria-hidden="true">→</span><span>Labeled dataset</span></div>
+
+<h2>Limitations, stated openly</h2><ul class="ticks"><li>Company project: there is no public repository and no public numbers (throughput, accuracy) are given here.</li></ul>
+
 <div class="next-prev"><a class="btn ghost" href="/projects/ai-resume-evaluation-service/">← AI technical resume evaluation service</a><a class="btn ghost" href="/projects/industrial-gauge-localization/">Industrial gauge localization →</a></div>
 <footer class="site"><span>© 2026 Fatemeh Harirforoush</span><span>Tehran, Iran · static site on GitHub Pages</span></footer>
 </main></div>
-<script src="/assets/js/main.js?v=7a0c14ee" defer></script>
+<script src="/assets/js/main.js?v=dcde9133" defer></script>
 </body>
 </html>

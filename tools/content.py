@@ -305,7 +305,7 @@ EXPERIENCE = [
     {
         "role": "AI Software Engineering Intern · Project Owner",
         "org": "Sharif Setup — Generative AI startup",
-        "period": "August 2026 – present", "kind": "12-week internship", "color": "sky",
+        "period": "August 2026 – present", "kind": "12-week internship", "color": "sky", "logo": "sharifsetup.svg",
         "sections": [
             {
                 "title": "AI-powered data labeling platform", "status": "Completed",
@@ -342,7 +342,7 @@ EXPERIENCE = [
     {
         "role": "Data Scientist Bootcamp trainee",
         "org": "Fanap",
-        "period": "December 2023 – September 2024", "kind": "bootcamp", "color": "peach",
+        "period": "December 2023 – September 2024", "kind": "bootcamp", "color": "peach", "logo": "fanap.webp",
         "bullets": [
             "Selected through Quera's Hafez competition for Fanap's Data Scientist Bootcamp.",
             "Hands-on work in Python, SQL, machine learning and deep learning; ranked among the top participants and worked with CNNs, RNNs, GANs and Transformers.",

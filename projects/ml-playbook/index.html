@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css?v=e73b4913">
+<link rel="stylesheet" href="/assets/css/style.css?v=674b8b98">
 
 </head>
 <body>
@@ -30,17 +30,23 @@
 <p class="eyebrow">Machine learning · 2024 – 2026</p>
 <h1>ML Playbook</h1>
 <p class="lead">Classification, regression, NLP and computer vision, written while learning and then revisited with proper evaluation.</p>
+<p class="role-line"><b>Role</b> Sole author · notebooks from 2024, follow-up analyses in 2026</p>
 <div class="facts"><div class="fact"><b>6</b><span>case studies</span></div><div class="fact"><b>97.9%</b><span>breast-cancer accuracy</span></div><div class="fact"><b>94.0%</b><span>spam recall</span></div><div class="fact"><b>0.832</b><span>housing R²</span></div></div>
 <ul class="chips"><li class="chip">Python</li><li class="chip">scikit-learn</li><li class="chip">TensorFlow / Keras</li><li class="chip">pandas</li><li class="chip">Jupyter</li></ul>
 <div class="btn-row" style="margin-top:18px"><a class="btn" href="https://github.com/ftharir/ml-playbook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" class=""><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> View on GitHub</a><a class="btn ghost" href="/projects/">All projects</a></div>
 </section>
-<h2 style="margin-top:8px">The problem</h2><p>Early notebooks often report a single accuracy number. The playbook keeps them as they were and adds the evaluation they were missing.</p>
-<h2>What I built</h2><ul class="ticks"><li>Six projects: breast cancer, heart disease, SMS spam, housing prices, hot dog CNN and helmet detection.</li><li>For each one an analysis notebook with several models, cross-validation, fixed seeds, leak-free preprocessing and error analysis.</li><li>A README per project that states the original and the follow-up result side by side.</li></ul>
-<h2>Results</h2><ul class="ticks"><li>Breast cancer: accuracy 94.1% to 97.9%, malignant recall 91% to 98.5%.</li><li>SMS spam: spam recall 70% to 94.0%, F1 0.962. Housing: R² 0.822 to 0.832.</li><li>Heart disease and helmet detection are reported with their weaknesses (for example 16% recall for riders without a helmet).</li></ul>
+<h2 style="margin-top:8px">Overview</h2><div class="box reveal"><p>Early notebooks usually report one accuracy number. The playbook keeps six of mine exactly as they were, written while I was learning machine learning, and puts a more rigorous analysis next to each: several models, cross-validation, leak-free preprocessing and error analysis.</p><p>It covers classification, regression, NLP and computer vision, and each project has a README that states the original and the follow-up result side by side.</p></div>
+<h2>Approach</h2><ol class="steps"><li class="step reveal"><span class="n">1</span><div><h3>Keep the original</h3><p>Each project&#x27;s first notebook stays untouched, so the starting point is visible.</p></div></li><li class="step reveal"><span class="n">2</span><div><h3>Re-evaluate</h3><p>An analysis notebook re-runs the problem with better methodology and metrics.</p></div></li><li class="step reveal"><span class="n">3</span><div><h3>Compare models</h3><p>Several models per problem with fixed seeds and cross-validation instead of one train/test split.</p></div></li><li class="step reveal"><span class="n">4</span><div><h3>Prevent leakage</h3><p>Imputation, scaling and encoding live inside scikit-learn pipelines fitted on training data only.</p></div></li><li class="step reveal"><span class="n">5</span><div><h3>Explain</h3><p>Confusion matrices, residuals, per-region errors, feature importances and misclassified examples.</p></div></li></ol>
+<h2>Key decisions</h2><div class="decisions c-butter"><div class="decide reveal"><h3>Metrics that match the problem</h3><p>Recall for malignant tumours, spam and heart-disease cases instead of accuracy alone; RMSE and MAE next to R².</p></div><div class="decide reveal"><h3>Honest caveats</h3><p>Small samples, capped targets and duplicated rows are stated in every README.</p></div><div class="decide reveal"><h3>Reproducibility</h3><p>Fixed seeds, dependency files and notebooks that ship with their outputs.</p></div></div>
 <h2>Original versus follow-up</h2><table><thead><tr><th>Project</th><th>Original</th><th>Follow-up</th></tr></thead><tbody><tr><td>Breast cancer</td><td>94.1% accuracy</td><td>97.9% accuracy; malignant recall 98.5%</td></tr><tr><td>Heart disease risk</td><td>86% training accuracy only</td><td>CV ROC-AUC 0.723; CHD recall 5% to 60%</td></tr><tr><td>SMS spam</td><td>96% accuracy, 70% spam recall</td><td>Spam recall 94.0%, F1 0.962</td></tr><tr><td>Housing prices</td><td>R² 0.822</td><td>R² 0.832, RMSE about $46.9k</td></tr><tr><td>Hot dog CNN</td><td>Log inside the notebook</td><td>73% validation accuracy at epoch 18</td></tr><tr><td>Helmet detection</td><td>62.5% test accuracy</td><td>69.1% vs 67.1% majority baseline</td></tr></tbody></table>
+
+
+
+<h2>Limitations, stated openly</h2><ul class="ticks"><li>These are learning projects on small public datasets; the follow-ups improve the evaluation more than the models.</li><li>Helmet detection recalls only 16 % of riders without a helmet, and the heart-disease model&#x27;s ROC-AUC is a modest 0.723; both are reported as they are.</li></ul>
+
 <div class="next-prev"><a class="btn ghost" href="/projects/ctc-captcha-recognition/">← Captcha recognition</a><a class="btn ghost" href="/projects/telegram-services-platform/">Telegram services platform →</a></div>
 <footer class="site"><span>© 2026 Fatemeh Harirforoush</span><span>Tehran, Iran · static site on GitHub Pages</span></footer>
 </main></div>
-<script src="/assets/js/main.js?v=7a0c14ee" defer></script>
+<script src="/assets/js/main.js?v=dcde9133" defer></script>
 </body>
 </html>
