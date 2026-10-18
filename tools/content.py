@@ -485,9 +485,15 @@ COURSES = [
 
 LITERATURE = [
     "Maintenance strategies: preventive, predictive and prescriptive",
-    "Retrieval- and knowledge-augmented generation (RAG, KAG)",
+    "Condition monitoring and remaining-useful-life prediction",
     "Decision mining in process-aware information systems",
     "Log anomaly detection with retrieval-augmented generation",
+    "Retrieval- and knowledge-augmented generation (RAG, KAG)",
+    "Knowledge graphs and domain knowledge for LLMs",
     "Voice-enabled digital assistants for maintenance",
     "Fault diagnosis and forecasting for wind and solar energy",
+    "Reading analog gauges and needle instruments with computer vision",
+    "Segmentation, detection and RGB-D perception",
+    "Graph neural networks and functional connectivity in neuroimaging",
+    "Molecular representation learning and 3D structure",
 ]

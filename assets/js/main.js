@@ -94,15 +94,24 @@
   if (fine && !calm) {
     var root = document.documentElement, tx = 0, ty = 0, gx = 0, gy = 0, raf = 0;
     var follow = function () {
-      gx += (tx - gx) * 0.08; gy += (ty - gy) * 0.08;
+      gx += (tx - gx) * 0.1; gy += (ty - gy) * 0.1;
       root.style.setProperty('--mx', gx.toFixed(1) + 'px');
       root.style.setProperty('--my', gy.toFixed(1) + 'px');
       raf = (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) ? requestAnimationFrame(follow) : 0;
+    };
+    var ring = document.createElement('div'); ring.className = 'follower'; document.body.appendChild(ring);
+    var rx = 0, ry = 0, rraf = 0;
+    var chase = function () {
+      rx += (tx - rx) * 0.16; ry += (ty - ry) * 0.16;
+      ring.style.transform = 'translate(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px)';
+      rraf = (Math.abs(tx - rx) > 0.3 || Math.abs(ty - ry) > 0.3) ? requestAnimationFrame(chase) : 0;
     };
     var arch = document.querySelector('.arch');
     window.addEventListener('pointermove', function (e) {
       tx = e.clientX; ty = e.clientY;
       if (!raf) { raf = requestAnimationFrame(follow); }
+      if (!rraf) { if (!root.classList.contains('pointer')) { rx = tx; ry = ty; } rraf = requestAnimationFrame(chase); }
+      ring.classList.toggle('big', !!(e.target.closest && e.target.closest('a, button, .card')));
       root.classList.add('pointer');
       var host = e.target.closest && e.target.closest('.card, .t-item, .decide, .step, .box, .stat, .fact, .tile');
       if (host) {

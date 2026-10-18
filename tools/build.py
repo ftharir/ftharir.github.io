@@ -91,6 +91,12 @@ LINE_ICONS = {
     "globe": '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
     "box": '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05M12 22.08V12"/>',
     "chart": '<path d="M18 20V10M12 20V4M6 20v-6"/>',
+    "mic": '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/>',
+    "flask": '<path d="M9 2h6M10 2v6L4 19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2l-6-11V2"/>',
+    "wrench": '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
+    "sun": '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    "brain": '<path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 5h1V3z"/><path d="M15 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 5h-1V3z"/>',
+    "route": '<circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h8a3.5 3.5 0 0 0 0-7H7a3.5 3.5 0 0 1 0-7h8"/>',
 }
 # skill label -> ("brand", file in assets/icons) or ("line", key in LINE_ICONS)
 SKILL_ICON = {
@@ -113,6 +119,29 @@ SKILL_ICON = {
     "Docker": ("brand", "docker"), "Docker Compose": ("brand", "docker"), "Streamlit": ("brand", "streamlit"),
     "Contrastive learning": ("line", "repeat"), "Explainable AI (XAI)": ("line", "eye"), "Graph neural networks": ("line", "network"),
     "Physics-informed neural networks": ("line", "activity"),
+    # tags used under projects, experience and research
+    "Alembic": ("line", "database"), "Bale API": ("line", "message"), "CNN": ("line", "layers"), "CRNN": ("line", "layers"),
+    "CTC loss": ("line", "trend"), "Excel": ("line", "chart"), "Faster Whisper": ("line", "mic"), "GAN": ("line", "activity"),
+    "Grad-CAM": ("line", "eye"), "Jupyter": ("line", "code"), "LLMs": ("line", "message"), "LabelMe": ("line", "crosshair"),
+    "ONNX": ("line", "box"), "RDKit": ("line", "flask"), "RNN": ("line", "repeat"), "ResNet18": ("line", "layers"),
+    "SVM": ("line", "sliders"), "TensorFlow / Keras": ("brand", "tensorflow"), "YOLOv5": ("brand", "ultralytics"),
+    "aiogram": ("line", "message"), "matplotlib": ("line", "chart"), "pytest": ("line", "check"),
+    "Predictive maintenance": ("line", "wrench"), "Prescriptive maintenance": ("line", "wrench"),
+    "Retrieval-augmented generation": ("line", "search"), "Explainable AI": ("line", "eye"),
+    "fMRI and functional connectivity": ("line", "brain"), "Object detection and tracking": ("line", "crosshair"),
+    "Molecular structures": ("line", "flask"),
+    "Maintenance strategies: preventive, predictive and prescriptive": ("line", "wrench"),
+    "Retrieval- and knowledge-augmented generation (RAG, KAG)": ("line", "search"),
+    "Decision mining in process-aware information systems": ("line", "route"),
+    "Log anomaly detection with retrieval-augmented generation": ("line", "terminal"),
+    "Voice-enabled digital assistants for maintenance": ("line", "mic"),
+    "Fault diagnosis and forecasting for wind and solar energy": ("line", "sun"),
+    "Condition monitoring and remaining-useful-life prediction": ("line", "activity"),
+    "Knowledge graphs and domain knowledge for LLMs": ("line", "network"),
+    "Reading analog gauges and needle instruments with computer vision": ("line", "crosshair"),
+    "Segmentation, detection and RGB-D perception": ("line", "image"),
+    "Graph neural networks and functional connectivity in neuroimaging": ("line", "brain"),
+    "Molecular representation learning and 3D structure": ("line", "flask"),
 }
 
 
@@ -128,7 +157,7 @@ def skill_chips(items, color_var):
 
 # ---------------------------------------------------------------- pieces
 def chips(items):
-    return '<ul class="chips">' + "".join(f'<li class="chip">{esc(t)}</li>' for t in items) + "</ul>"
+    return skill_chips(items, "var(--a, var(--pink))")
 
 
 def ticks(items):
