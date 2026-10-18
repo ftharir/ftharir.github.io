@@ -11,7 +11,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from content import (ABOUT_PARAGRAPHS, AREAS, EDUCATION, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
+from content import (ABOUT_PARAGRAPHS, AREAS, CONTACT_FORM_ENDPOINT, EDUCATION, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
                      PUBLICATIONS, RESEARCH, SITE_URL, SKILLS)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -306,12 +306,24 @@ def page_contact():
     body = f'''<h1>Let's <em>talk</em></h1>
 <p class="lead">The best way to reach me is email. I read every message.</p>
 <div class="cards">
-  <div class="card c-peach reveal"><div class="top"><span class="area"><i>{icon("mail")}</i>Email</span></div><h3>{esc(PROFILE["email"])}</h3>
+  <div class="card compact c-peach reveal"><div class="top"><span class="area"><i>{icon("mail")}</i>Email</span></div><h3 class="mail">{esc(PROFILE["email"])}</h3>
     <div class="btn-row" style="margin-top:auto;padding-top:16px"><a class="btn" href="mailto:{PROFILE["email"]}">Write an email</a><button class="btn ghost" type="button" data-copy="{PROFILE["email"]}">{icon("copy")} Copy</button></div></div>
-  <a class="card c-sky reveal" href="{PROFILE["linkedin"]}" target="_blank" rel="noopener me"><div class="top"><span class="area"><i>{icon("linkedin")}</i>LinkedIn</span></div><h3>Fatemeh Harirforoush</h3><p>Experience, research and recommendations.</p><span class="more">Open LinkedIn {icon("arrow")}</span></a>
-  <a class="card c-lav reveal" href="{PROFILE["github"]}" target="_blank" rel="noopener me"><div class="top"><span class="area"><i>{icon("github")}</i>GitHub</span></div><h3>@ftharir</h3><p>All projects, with code, data and documentation.</p><span class="more">Open GitHub {icon("arrow")}</span></a>
-  <div class="card c-green reveal"><div class="top"><span class="area"><i>{icon("grid")}</i>Location</span></div><h3>{esc(PROFILE["location"])}</h3><p>Remote collaboration is fine.</p></div>
-</div>'''
+  <a class="card compact c-sky reveal" href="{PROFILE["linkedin"]}" target="_blank" rel="noopener me"><div class="top"><span class="area"><i>{icon("linkedin")}</i>LinkedIn</span></div><h3>Fatemeh Harirforoush</h3><p>Experience, research and recommendations.</p><span class="more">Open LinkedIn {icon("arrow", "btn-icon")}</span></a>
+  <a class="card compact c-lav reveal" href="{PROFILE["github"]}" target="_blank" rel="noopener me"><div class="top"><span class="area"><i>{icon("github")}</i>GitHub</span></div><h3>@ftharir</h3><p>All projects, with code, data and documentation.</p><span class="more">Open GitHub {icon("arrow", "btn-icon")}</span></a>
+  <div class="card compact c-green reveal"><div class="top"><span class="area"><i>{icon("grid")}</i>Location</span></div><h3>{esc(PROFILE["location"])}</h3><p>Remote collaboration is fine.</p></div>
+</div>
+<h2>Send me a message</h2>
+<form class="box c-white contact-form reveal" id="contact-form" data-endpoint="{esc(CONTACT_FORM_ENDPOINT)}" data-mailto="{PROFILE["email"]}" novalidate>
+  <div class="form-grid">
+    <label>Your name<input type="text" name="name" autocomplete="name" required maxlength="80" placeholder="Jane Doe"></label>
+    <label>Your email<input type="email" name="email" autocomplete="email" required maxlength="120" placeholder="so I can reply: jane@example.com"></label>
+  </div>
+  <label>Message<textarea name="message" rows="6" required maxlength="3000" placeholder="Hi Fatemeh, ..."></textarea></label>
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+  <div class="btn-row"><button class="btn" type="submit">Send message {icon("arrow")}</button></div>
+  <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+  <p class="muted small">Your message is sent to my email. No tracking, no cookies.</p>
+</form>'''
     return shell("Contact", "Contact Fatemeh Harirforoush: email, LinkedIn and GitHub.", "/contact/", body, crumbs=[("Home", "/"), ("Contact", None)])
 
 

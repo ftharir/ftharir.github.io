@@ -53,4 +53,37 @@
       if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done); } else { done(); }
     });
   });
+
+  // contact form: posts to the form service; without an endpoint it opens the visitor's e-mail app
+  var form = document.getElementById('contact-form');
+  if (form) {
+    var status = document.getElementById('form-status');
+    var say = function (text, kind) { status.textContent = text; status.className = 'form-status ' + (kind || ''); };
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var f = form.elements;
+      if (f._gotcha.value) { return; }                        // spam trap
+      var ok = true;
+      ['name', 'email', 'message'].forEach(function (n) {
+        var bad = !f[n].value.trim() || (n === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f[n].value.trim()));
+        f[n].setAttribute('aria-invalid', String(bad));
+        if (bad) { ok = false; }
+      });
+      if (!ok) { say('Please fill in your name, a valid email and a message.', 'err'); return; }
+      var data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
+      var endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        var body = data.message + '\n\n— ' + data.name + ' (' + data.email + ')';
+        location.href = 'mailto:' + form.dataset.mailto + '?subject=' + encodeURIComponent('Message from ' + data.name) + '&body=' + encodeURIComponent(body);
+        say('Your email app should open with the message ready to send.', 'ok');
+        return;
+      }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true; say('Sending…');
+      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) { throw new Error(r.status); } form.reset(); say('Thank you! Your message was sent.', 'ok'); })
+        .catch(function () { say('Sorry, sending failed. Please email me directly.', 'err'); })
+        .then(function () { btn.disabled = false; });
+    });
+  }
 })();

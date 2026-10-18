@@ -249,3 +249,26 @@ footer.site { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--l
 svg.btn-icon { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 .card .more { transition: gap .2s; }
 a.card:hover .more { gap: 10px; }
+
+/* ---------- contact form ---------- */
+.contact-form { display: grid; gap: 16px; }
+.contact-form label { display: grid; gap: 6px; font-weight: 600; font-size: .92rem; }
+.contact-form input, .contact-form textarea {
+  font: inherit; font-weight: 400; color: var(--ink); background: var(--cream); border: 1.5px solid var(--line);
+  border-radius: 16px; padding: 12px 16px; width: 100%; transition: border-color .2s, box-shadow .2s;
+}
+.contact-form textarea { resize: vertical; min-height: 140px; }
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(28,26,31,.08); }
+.contact-form input[aria-invalid="true"], .contact-form textarea[aria-invalid="true"] { border-color: #c0392b; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-status { margin: 0; min-height: 1.4em; font-weight: 600; }
+.form-status.ok { color: #1c7a4a; } .form-status.err { color: #b3261e; }
+.small { font-size: .82rem; margin: 0; }
+.btn[disabled] { opacity: .6; cursor: progress; }
+@media (max-width: 860px) { .form-grid { grid-template-columns: 1fr; } }
+
+.card.compact { min-height: 0; }
+.card .mail { font-size: 1.12rem; overflow-wrap: anywhere; }
+
+.card .area i svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }

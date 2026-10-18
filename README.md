@@ -44,6 +44,15 @@ then commit the changed HTML files. `build.py` also copies and converts the proj
 
 To look at the site locally: `python -m http.server` in this folder and open <http://localhost:8000>.
 
+## Contact form
+
+The contact page has a form (name, email, message). A static site has no server, so the form posts to a form service that forwards the message to my email:
+
+1. Create a free form at <https://formspree.io> (it gives an address like `https://formspree.io/f/xxxxxxxx`) and set the notification address to my email.
+2. Put that address in `CONTACT_FORM_ENDPOINT` in `tools/content.py`, run `python tools/build.py` and commit.
+
+While `CONTACT_FORM_ENDPOINT` is empty, the form opens the visitor's email app with the message ready to send, so it always works. The form has a hidden honeypot field against spam bots. Messages could be forwarded to Telegram instead, but that needs a small serverless function (the bot token must never be placed in the page).
+
 ## Design notes
 
 * Layout: icon rail on the left, content in the middle, profile panel on the right; on small screens the rail becomes a bottom bar and the panel moves below the content.

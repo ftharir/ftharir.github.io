@@ -2,6 +2,10 @@
 
 SITE_URL = "https://ftharir.github.io"
 
+# Address of the form service, e.g. "https://formspree.io/f/xxxxxxxx" (see README).
+# While it is empty, the contact form opens the visitor's e-mail app instead.
+CONTACT_FORM_ENDPOINT = ""
+
 PROFILE = {
     "name": "Fatemeh Harirforoush",
     "short": "Fatemeh Harir",
