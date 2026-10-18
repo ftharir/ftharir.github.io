@@ -396,7 +396,7 @@ RESEARCH = [
     },
     {
         "role": "Research Assistant — Neuroimaging and computer vision",
-        "supervisors": "Professor Hoseinkhani",
+        "supervisors": "Dr. Mohammad Reza Hoseinkhani",
         "org": "School of AI, Sharif University of Technology",
         "period": "July 2024 – January 2025", "color": "green",
         "summary": "Estimating a person's mental state from brain-imaging data, and exploring graph neural networks as a way to represent the brain.",
@@ -506,5 +506,5 @@ SUPERVISORS = [
     ("Dr. Mohammad Hossein Rohban", "LLM and maintenance research; molecular structures lab task"),
     ("Dr. Siavash Ahmadi", "LLM and maintenance research; computer vision for quadcopters"),
     ("Dr. Babak Khalaj", "LLM and maintenance research; co-author of the survey"),
-    ("Professor Hoseinkhani", "Neuroimaging and computer vision for mental-state estimation"),
+    ("Dr. Mohammad Reza Hoseinkhani", "Neuroimaging and computer vision for mental-state estimation"),
 ]
