@@ -220,7 +220,10 @@ def page_experience():
 
 
 def page_research():
-    pubs = "".join(f'<div class="box c-lav reveal"><p class="eyebrow">Publication</p><h3>{esc(x["title"])}</h3><p class="muted">{esc(x["status"])}</p></div>' for x in PUBLICATIONS)
+    pubs = "".join(
+        f'<div class="box c-lav reveal"><p class="eyebrow">Publication</p><h3>{esc(x["title"])}</h3><p class="muted">{esc(x["status"])}</p>'
+        + (f'<p style="margin:14px 0 0"><a class="btn" href="{esc(x["url"])}" target="_blank" rel="noopener">Read the paper on ResearchGate {icon("arrow")}</a></p>' if x.get("url") else "")
+        + "</div>" for x in PUBLICATIONS)
     body = f'''<h1>Research &amp; <em>academic</em> work</h1>
 <p class="lead">Research roles at Sharif University of Technology and the Sharif Center for Information Systems and Data Science, and the publication that came out of them.</p>
 <h2 style="margin-top:8px">Publications</h2>

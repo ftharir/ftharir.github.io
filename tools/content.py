@@ -336,6 +336,7 @@ PUBLICATIONS = [
     {
         "title": "From Predictive Maintenance to Prescriptive: A Survey of Retrieval-Augmented Generation-Driven Systems for End-to-End Maintenance Decision-Making",
         "status": "Submitted to a Q1 journal, under review, 2026.",
+        "url": "https://www.researchgate.net/publication/410821744_From_predictive_maintenance_to_prescriptive_A_survey_of_Retrieval-Augmented_Generation-Driven_Systems_for_End-to-End_Maintenance_Decision-Making",
     }
 ]
 
