@@ -469,7 +469,8 @@ ACTIVITIES = [
     {"title": "Head teaching assistant, Fundamentals of Computational Intelligence", "org": "University of Science and Research", "period": "from February 2024", "color": "lav", "text": ""},
     {"title": "Observer, Machine Learning course CS229", "org": "Amirkabir University of Technology", "period": "from February 2024", "color": "peach", "text": ""},
     {"title": "Head of the IT team, Sadra Job Fair", "org": "University of Science and Research", "period": "January 2024", "color": "sky", "text": ""},
-    {"title": "Writing team member, BYTE Magazine", "org": "Computer Engineering Department, Sharif University of Technology", "period": "from August 2023", "color": "butter", "text": ""},
+    {"title": "Writing team member, BYTE Magazine", "org": "Computer Engineering Department, Sharif University of Technology", "period": "November 2023", "color": "butter", "text": "",
+     "link": "https://byte-mag.ir/mags/00000001/linus-torvalds-biography/", "link_label": "Read my article: Linus Torvalds' biography"},
 ]
 
 COURSES = [

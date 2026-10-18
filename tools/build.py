@@ -478,7 +478,9 @@ def page_education():
         f'<p class="org">{esc(e["org"])}</p>{"<p>" + esc(e["text"]) + "</p>" if e["text"] else ""}</article>' for e in EDUCATION)
     acts = "".join(
         f'<article class="t-item reveal" style="--dot:{COLOR_VAR[a_["color"]]}"><div class="t-meta"><span class="pill">{esc(a_["period"])}</span></div>'
-        f'<h3>{esc(a_["title"])}</h3><p class="org">{esc(a_["org"])}</p>{"<p>" + esc(a_["text"]) + "</p>" if a_["text"] else ""}</article>' for a_ in ACTIVITIES)
+        f'<h3>{esc(a_["title"])}</h3><p class="org">{esc(a_["org"])}</p>{"<p>" + esc(a_["text"]) + "</p>" if a_["text"] else ""}'
+        + (f'<p style="margin-top:12px"><a class="btn ghost" href="{esc(a_["link"])}" target="_blank" rel="noopener">{esc(a_["link_label"])} {icon("arrow")}</a></p>' if a_.get("link") else "")
+        + '</article>' for a_ in ACTIVITIES)
     courses = "".join(f'<li class="chip">{esc(t)} · {esc(p)}</li>' for t, p in COURSES)
     body = f'''<h1><em>Education</em></h1>
 <p class="lead">A computer engineering degree, extended with advanced AI courses, a competitive data-science bootcamp, student projects and online courses.</p>
