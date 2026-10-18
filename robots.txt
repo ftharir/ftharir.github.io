@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ftharir.github.io/sitemap.xml
