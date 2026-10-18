@@ -4,6 +4,7 @@ Reads tools/content.py and writes plain HTML pages (pretty URLs: /projects/<slug
 Images of the projects are copied from local clones of the repositories (see IMAGE_SOURCE) and
 converted to WebP; they are committed under assets/img/, so the site itself needs no build step.
 """
+import hashlib
 import html
 import json
 import os
@@ -19,6 +20,12 @@ IMAGE_SOURCE = os.environ.get("IMAGE_SOURCE", r"E:\GitHub-backup-ftharir-2026-10
 AVATAR_SOURCE = os.environ.get("AVATAR_SOURCE", "")  # optional: square image to convert into assets/img/avatar.webp
 
 esc = html.escape
+
+
+def ver(rel):
+    """Short content hash for cache busting: a changed file gets a new URL, so browsers never show stale CSS or JS."""
+    with open(os.path.join(ROOT, rel), "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()[:8]
 
 ICONS = {
     "home": '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/>',
@@ -120,7 +127,7 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v={ver("assets/css/style.css")}">
 {ld}
 </head>
 <body>
@@ -138,7 +145,7 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
   </main>
   {panel()}
 </div>
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js?v={ver("assets/js/main.js")}" defer></script>
 </body>
 </html>
 '''
