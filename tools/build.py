@@ -205,8 +205,7 @@ def page_home():
 
 <section class="block">
   <div class="box c-pink reveal" style="text-align:center;padding:44px 28px">
-    <h3 style="font-family:var(--serif);font-weight:400;font-size:2.3rem;margin-bottom:10px">Have an idea, a project, or just a hello?</h3>
-    <p class="muted" style="margin-bottom:22px">For collaboration, or even just to say hi.</p>
+    <h3 style="font-family:var(--serif);font-weight:400;font-size:2.3rem;margin-bottom:22px">Have an idea, a project, or just a hello?</h3>
     <a class="btn" href="/contact/">Send me a message {icon("arrow")}</a>
   </div>
 </section>'''
