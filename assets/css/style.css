@@ -254,3 +254,10 @@ footer.site { margin-top: 72px; padding: 24px 0 40px; border-top: 1px solid var(
 
 /* the filter relies on the hidden attribute; display rules of components must not override it */
 [hidden] { display: none !important; }
+
+/* ---------- skill icons ---------- */
+.chip.has-ico { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; color: var(--ink); }
+.chip .ico { width: 16px; height: 16px; flex: none; }
+.chip .lico { width: 16px; height: 16px; flex: none; stroke: var(--g, var(--pink)); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tile i img { width: 30px; height: 30px; }
+.card .metric { font-weight: 600; }

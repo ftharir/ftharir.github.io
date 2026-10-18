@@ -60,6 +60,67 @@ COLOR_VAR = {"pink": "var(--pink)", "peach": "var(--peach)", "lav": "var(--lav)"
 AREA_LABEL = {k: v for k, v, _ in AREAS}
 
 
+
+# ---------------------------------------------------------------- skill icons
+LINE_ICONS = {
+    "cpu": '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>',
+    "layers": '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>',
+    "repeat": '<path d="m17 1 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 23-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
+    "clock": '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+    "zap": '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+    "eye": '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+    "image": '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
+    "search": '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
+    "check": '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/>',
+    "database": '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+    "file": '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/>',
+    "terminal": '<path d="m4 17 6-6-6-6"/><path d="M12 19h8"/>',
+    "code": '<path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>',
+    "activity": '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+    "message": '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    "network": '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/>',
+    "crosshair": '<circle cx="12" cy="12" r="10"/><path d="M22 12h-4M6 12H2M12 6V2M12 22v-4"/>',
+    "filter": '<path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>',
+    "sliders": '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',
+    "trend": '<path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/>',
+    "globe": '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+    "box": '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.27 6.96 8.73 5.05 8.73-5.05M12 22.08V12"/>',
+    "chart": '<path d="M18 20V10M12 20V4M6 20v-6"/>',
+}
+# skill label -> ("brand", file in assets/icons) or ("line", key in LINE_ICONS)
+SKILL_ICON = {
+    "Python": ("brand", "python"), "Java": ("brand", "openjdk"), "SQL": ("line", "database"), "FastAPI": ("brand", "fastapi"),
+    "REST APIs": ("line", "globe"), "Pydantic": ("brand", "pydantic"), "OpenAPI / Swagger": ("brand", "swagger"),
+    "Object-oriented programming": ("line", "box"), "Git": ("brand", "git"), "Linux": ("brand", "linux"),
+    "scikit-learn": ("brand", "scikitlearn"), "PyTorch": ("brand", "pytorch"), "TensorFlow": ("brand", "tensorflow"),
+    "Neural networks": ("line", "network"), "CNNs": ("line", "layers"), "RNNs": ("line", "repeat"), "LSTM": ("line", "clock"),
+    "Transformers": ("line", "zap"), "Transfer learning": ("line", "sliders"), "GANs": ("line", "activity"),
+    "Diffusion models": ("line", "image"), "Model evaluation": ("line", "trend"),
+    "Large language models": ("line", "message"), "Prompt engineering": ("line", "terminal"),
+    "Retrieval-augmented generation (RAG)": ("line", "search"), "Hugging Face Transformers": ("brand", "huggingface"),
+    "LLM API integration": ("line", "code"), "Structured outputs": ("line", "file"), "LLM-based evaluation": ("line", "check"),
+    "OpenCV": ("brand", "opencv"), "Image processing": ("line", "image"), "Object detection": ("line", "crosshair"),
+    "Object tracking": ("line", "eye"), "YOLO": ("brand", "ultralytics"), "Medical image analysis": ("line", "activity"),
+    "pandas": ("brand", "pandas"), "NumPy": ("brand", "numpy"), "SciPy": ("brand", "scipy"), "Data processing": ("line", "sliders"),
+    "Data cleaning": ("line", "filter"), "Data validation": ("line", "check"), "Document parsing (PDF / DOCX)": ("line", "file"),
+    "Power BI": ("line", "chart"),
+    "PostgreSQL": ("brand", "postgresql"), "SQLAlchemy": ("brand", "sqlalchemy"), "Redis": ("brand", "redis"),
+    "Docker": ("brand", "docker"), "Docker Compose": ("brand", "docker"), "Streamlit": ("brand", "streamlit"),
+    "Contrastive learning": ("line", "repeat"), "Explainable AI (XAI)": ("line", "eye"), "Graph neural networks": ("line", "network"),
+    "Physics-informed neural networks": ("line", "activity"),
+}
+
+
+def skill_icon(label, color_var="var(--pink)"):
+    kind, key = SKILL_ICON.get(label, ("line", "cpu"))
+    if kind == "brand":
+        return f'<img class="ico" src="/assets/icons/{key}.svg" alt="" width="16" height="16" loading="lazy">'
+    return f'<svg class="lico" viewBox="0 0 24 24" aria-hidden="true" style="--g:{color_var}">{LINE_ICONS[key]}</svg>'
+
+
+def skill_chips(items, color_var):
+    return '<ul class="chips">' + "".join(f'<li class="chip has-ico">{skill_icon(t, color_var)}{esc(t)}</li>' for t in items) + "</ul>"
+
 # ---------------------------------------------------------------- pieces
 def chips(items):
     return '<ul class="chips">' + "".join(f'<li class="chip">{esc(t)}</li>' for t in items) + "</ul>"
@@ -71,7 +132,7 @@ def ticks(items):
 
 def project_card(p, extra=""):
     return (f'<a class="card c-{p["color"]} reveal" href="/projects/{p["slug"]}/" data-areas="{" ".join(p["areas"])}"{extra}>'
-            f'<div class="top"><span class="area"><i>{icon("grid")}</i>{esc(p["label"])}</span><span class="metric">{esc(p["metric"])}</span></div>'
+            f'<div class="top"><span class="area"><i>{icon("grid")}</i>{esc(p["label"])}</span><span class="metric">{esc(p["period"])}</span></div>'
             f'<h3>{esc(p["title"])}</h3><p>{esc(p["summary"])}</p>'
             f'{chips(p["tech"][:4])}'
             f'<span class="more">Read the case study {icon("arrow", "btn-icon")}</span></a>')
@@ -106,7 +167,9 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <meta property="og:url" content="{SITE_URL}{path}"><meta property="og:image" content="{SITE_URL}{og_image}"><meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#120d12"><meta name="color-scheme" content="dark">
 <script>document.documentElement.classList.add("js")</script>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css?v={ver("assets/css/style.css")}">
@@ -115,7 +178,7 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <body>
 <a class="skip" href="#content">Skip to content</a>
 <header class="top-bar"><div class="top-inner">
-  <a class="brand" href="/" aria-label="Home"><span class="mark">FH</span><span class="name">{esc(PROFILE["name"])}</span></a>
+  <a class="brand" href="/" aria-label="Home"><span class="name">{esc(PROFILE["name"])}</span></a>
   <nav class="nav" aria-label="Main">{nav}</nav>
 </div></header>
 <div class="wrap"><main id="content">
@@ -140,9 +203,9 @@ def write(path, content):
 def page_home():
     order = ["ai-resume-evaluation-service", "ai-data-labeling-platform", "industrial-gauge-localization", "explainable-skin-disease-classification", "voiceledger", "telegram-services-platform"]
     featured = [next(p for p in PROJECTS if p["slug"] == k) for k in order]
-    tools = [("Py", "Python"), ("PT", "PyTorch"), ("TF", "TensorFlow"), ("sk", "scikit-learn"), ("Pd", "pandas"), ("CV", "OpenCV"),
-             ("Fa", "FastAPI"), ("Pg", "PostgreSQL"), ("Dk", "Docker"), ("Gi", "Git")]
-    tiles = "".join(f'<div class="tile"><i>{a}</i><span>{esc(b_)}</span></div>' for a, b_ in tools)
+    tools = [("python", "Python"), ("pytorch", "PyTorch"), ("tensorflow", "TensorFlow"), ("scikitlearn", "scikit-learn"), ("pandas", "pandas"),
+             ("opencv", "OpenCV"), ("fastapi", "FastAPI"), ("postgresql", "PostgreSQL"), ("docker", "Docker"), ("git", "Git")]
+    tiles = "".join(f'<div class="tile"><i><img src="/assets/icons/{a}.svg" alt="" width="30" height="30"></i><span>{esc(b_)}</span></div>' for a, b_ in tools)
     skills = ["Machine learning", "Deep learning", "Computer vision", "LLMs and RAG", "Data analysis", "Backend and APIs", "Explainable AI", "Graph neural networks"]
     skill_chips = "".join(f'<li class="chip">{esc(s_)}</li>' for s_ in skills)
     body = f'''<section class="hero">
@@ -331,7 +394,7 @@ def page_project(i, p):
     nav = '<div class="next-prev">' + (f'<a class="btn ghost" href="/projects/{prev_p["slug"]}/">← {esc(prev_p["title"])}</a>' if prev_p else "<span></span>") + \
           (f'<a class="btn ghost" href="/projects/{next_p["slug"]}/">{esc(next_p["title"])} →</a>' if next_p else "<span></span>") + "</div>"
     body = f'''<section class="hero-card c-{p["color"]}">
-<p class="eyebrow">{esc(p["label"])}</p>
+<p class="eyebrow">{esc(p["label"])} · {esc(p["period"])}</p>
 <h1>{esc(p["title"])}</h1>
 <p class="lead">{esc(p["lead"])}</p>
 <div class="facts">{facts}</div>
@@ -349,7 +412,7 @@ def page_project(i, p):
 
 def page_skills():
     groups = "".join(
-        f'<section class="skill-group box reveal"><h3><span class="dot" style="background:{COLOR_VAR[col]}"></span>{esc(title)}</h3>{chips(items)}</section>'
+        f'<section class="skill-group box reveal"><h3><span class="dot" style="background:{COLOR_VAR[col]}"></span>{esc(title)}</h3>{skill_chips(items, COLOR_VAR[col])}</section>'
         for title, col, items in SKILLS)
     body = f'''<h1>Technical <em>skills</em></h1>
 <p class="lead">What I use, grouped by what it is for. Each skill appears in at least one project on this site.</p>
@@ -431,10 +494,27 @@ def prepare_images():
                 im.save(dst, "WEBP", quality=84)
 
 
+def make_favicon_pngs():
+    """Raster versions of the 'fh' icon for browsers that do not use the SVG (Safari, iOS home screen)."""
+    from PIL import Image, ImageDraw, ImageFont
+    font_path = next((p for p in (r"C:\Windows\Fonts\georgiai.ttf", r"C:\Windows\Fonts\timesi.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf") if os.path.exists(p)), None)
+    for size, name in ((32, "favicon-32.png"), (180, "apple-touch-icon.png")):
+        scale = 8
+        big = size * scale
+        im = Image.new("RGBA", (big, big), (0, 0, 0, 0))
+        d = ImageDraw.Draw(im)
+        d.rounded_rectangle((0, 0, big - 1, big - 1), radius=int(big * 0.25), fill="#120d12")
+        font = ImageFont.truetype(font_path, int(big * 0.60)) if font_path else ImageFont.load_default()
+        bbox = d.textbbox((0, 0), "fh", font=font)
+        d.text(((big - (bbox[2] - bbox[0])) / 2 - bbox[0], (big - (bbox[3] - bbox[1])) / 2 - bbox[1] - big * 0.02), "fh", font=font, fill="#f08ab4")
+        im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, name))
+
+
 def write_static():
-    favicon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="#e0457b"/>'
-               '<text x="32" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#ffffff">FH</text></svg>')
+    favicon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#120d12"/>'
+               '<text x="32" y="45" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-style="italic" font-size="38" fill="#f08ab4">fh</text></svg>')
     open(os.path.join(ROOT, "favicon.svg"), "w", encoding="utf-8").write(favicon)
+    make_favicon_pngs()
     open(os.path.join(ROOT, ".nojekyll"), "w").write("")
     open(os.path.join(ROOT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
     urls = ["/", "/about/", "/experience/", "/research/", "/projects/", "/skills/", "/education/", "/contact/"] + [f"/projects/{p['slug']}/" for p in PROJECTS]

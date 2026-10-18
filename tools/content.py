@@ -36,7 +36,7 @@ AREAS = [
 
 PROJECTS = [
     {
-        "slug": "ai-resume-evaluation-service",
+        "slug": "ai-resume-evaluation-service", "period": "Aug 2026 – now",
         "title": "AI technical resume evaluation service",
         "color": "sky", "areas": ["ml", "backend"], "label": "Internship · LLM service",
         "metric": "in progress",
@@ -59,7 +59,7 @@ PROJECTS = [
         "images": [],
     },
     {
-        "slug": "ai-data-labeling-platform",
+        "slug": "ai-data-labeling-platform", "period": "2026",
         "title": "AI-powered data labeling platform",
         "color": "green", "areas": ["ml", "backend", "speech"], "label": "Internship · ML platform",
         "metric": "completed",
@@ -82,7 +82,7 @@ PROJECTS = [
         "images": [],
     },
     {
-        "slug": "industrial-gauge-localization", "gallery": "one",
+        "slug": "industrial-gauge-localization", "period": "Aug 2024 – Apr 2025", "gallery": "one",
         "title": "Industrial gauge localization",
         "repo": "industrial-gauge-localization",
         "color": "pink", "areas": ["cv"], "label": "Computer vision",
@@ -106,7 +106,7 @@ PROJECTS = [
                    ("industrial-gauge-localization/results/figures/08_classical_cv_overview.png", "classical-cv.webp", "Classical computer-vision baseline compared with the detector.")],
     },
     {
-        "slug": "cost-allocation-data-analysis",
+        "slug": "cost-allocation-data-analysis", "period": "Sep 2026",
         "title": "Cost allocation data analysis",
         "repo": "cost-allocation-data-analysis",
         "color": "peach", "areas": ["data"], "label": "Data analysis",
@@ -130,7 +130,7 @@ PROJECTS = [
                    ("cost-allocation-data-analysis/reports/figures/08_raw_to_final_reconciliation.png", "reconciliation.webp", "Reconciliation from the raw sources to the final report.")],
     },
     {
-        "slug": "pharmacogenomics-ml-data-analysis",
+        "slug": "pharmacogenomics-ml-data-analysis", "period": "Apr – May 2025",
         "title": "Pharmacogenomics data analysis",
         "repo": "pharmacogenomics-ml-data-analysis",
         "color": "peach", "areas": ["data", "ml"], "label": "Data analysis · ML",
@@ -153,7 +153,7 @@ PROJECTS = [
                    ("pharmacogenomics-ml-data-analysis/reports/figures/06_confusion_matrix_final.png", "confusion-matrix.webp", "Confusion matrix of the final model.")],
     },
     {
-        "slug": "explainable-skin-disease-classification", "gallery": "one",
+        "slug": "explainable-skin-disease-classification", "period": "Dec 2025 – mid-2026", "gallery": "one",
         "title": "Explainable skin disease classification",
         "repo": "explainable-skin-disease-classification",
         "color": "pink", "areas": ["cv", "ml"], "label": "Computer vision · XAI",
@@ -178,7 +178,7 @@ PROJECTS = [
                    ("explainable-skin-disease-classification/docs/demo.png", "demo.webp", "The Streamlit demo.")],
     },
     {
-        "slug": "voiceledger",
+        "slug": "voiceledger", "period": "2026",
         "title": "VoiceLedger",
         "repo": "VoiceLedger",
         "color": "sky", "areas": ["speech", "backend"], "label": "Speech · Backend",
@@ -201,7 +201,7 @@ PROJECTS = [
         "images": [],
     },
     {
-        "slug": "ctc-captcha-recognition",
+        "slug": "ctc-captcha-recognition", "period": "Dec 2025",
         "title": "Captcha recognition",
         "repo": "ctc-captcha-recognition",
         "color": "lav", "areas": ["cv", "ml"], "label": "Computer vision · DL",
@@ -224,7 +224,7 @@ PROJECTS = [
                    ("ctc-captcha-recognition/results/training_curves.png", "training-curves.webp", "Training curves; the first epochs are the plateau typical for CTC models.")],
     },
     {
-        "slug": "ml-playbook",
+        "slug": "ml-playbook", "period": "2024 – 2026",
         "title": "ML Playbook",
         "repo": "ml-playbook",
         "color": "butter", "areas": ["ml", "data"], "label": "Machine learning",
@@ -253,7 +253,7 @@ PROJECTS = [
                   ("Helmet detection", "62.5% test accuracy", "69.1% vs 67.1% majority baseline")],
     },
     {
-        "slug": "telegram-services-platform",
+        "slug": "telegram-services-platform", "period": "Aug 2026",
         "title": "Telegram services platform",
         "repo": "telegram-services-platform",
         "color": "green", "areas": ["backend"], "label": "Backend",
@@ -277,7 +277,7 @@ PROJECTS = [
         "images": [],
     },
     {
-        "slug": "moleculenet-3d-structure-study",
+        "slug": "moleculenet-3d-structure-study", "period": "mid-2024",
         "title": "MoleculeNet 3D structure study",
         "repo": "moleculenet-3d-structure-study",
         "color": "lav", "areas": ["research", "ml", "data"], "label": "Research",
