@@ -201,9 +201,9 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <meta property="og:url" content="{SITE_URL}{path}"><meta property="og:image" content="{SITE_URL}{og_image}"><meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#120d12"><meta name="color-scheme" content="dark">
 <script>document.documentElement.classList.add("js")</script>
-<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
-<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css?v={ver("assets/css/style.css")}">
@@ -574,25 +574,63 @@ def prepare_images():
                 im.save(dst, "WEBP", quality=84)
 
 
+# 'fh' monogram, drawn with strokes: every path is ("M", x, y) followed by ("L"/"C", ...) segments in a 64x64 box
+FH_PATHS = [
+    [("M", 21, 51), ("L", 21, 26), ("C", 21, 18, 25, 14, 33, 14)],      # f: stem and hook
+    [("M", 14, 29), ("L", 30, 29)],                                    # f: crossbar
+    [("M", 41, 13), ("L", 41, 51)],                                    # h: stem
+    [("M", 41, 36), ("C", 41, 28, 45, 25, 49, 25), ("C", 54, 25, 55, 30, 55, 35), ("L", 55, 51)],  # h: arch and leg
+]
+FH_SVG = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
+          '<stop offset="0" stop-color="#f6a3c5"/><stop offset="1" stop-color="#e0457b"/></linearGradient></defs>'
+          '<rect width="64" height="64" rx="16" fill="url(#g)"/><g fill="none" stroke="#120d12" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">'
+          + "".join('<path d="' + " ".join(f"{s[0]}{' '.join(str(v) for v in s[1:])}" for s in p) + '"/>' for p in FH_PATHS)
+          + '</g></svg>')
+
+
 def make_favicon_pngs():
     """Raster versions of the 'fh' icon for browsers that do not use the SVG (Safari, iOS home screen)."""
-    from PIL import Image, ImageDraw, ImageFont
-    font_path = next((p for p in (r"C:\Windows\Fonts\georgiai.ttf", r"C:\Windows\Fonts\timesi.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf") if os.path.exists(p)), None)
+    from PIL import Image, ImageDraw
+    def points(path, k):
+        pts, cur = [], None
+        for s in path:
+            if s[0] in "ML":
+                cur = (s[1] * k, s[2] * k)
+                pts.append(cur)
+            else:
+                x0, y0 = cur
+                x1, y1, x2, y2, x3, y3 = (v * k for v in s[1:])
+                for i in range(1, 25):
+                    t = i / 24
+                    u = 1 - t
+                    pts.append((u**3 * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t**3 * x3, u**3 * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t**3 * y3))
+                cur = (x3, y3)
+        return pts
     for size, name in ((32, "favicon-32.png"), (180, "apple-touch-icon.png")):
-        scale = 8
-        big = size * scale
-        im = Image.new("RGBA", (big, big), (0, 0, 0, 0))
+        big = size * 8
+        k = big / 64
+        diag = Image.new("L", (big, big))
+        diag.putdata([(x + y) * 255 // (2 * big - 2) for y in range(big) for x in range(big)])
+        tile = Image.composite(Image.new("RGB", (big, big), "#e0457b"), Image.new("RGB", (big, big), "#f6a3c5"), diag)
+        mask = Image.new("L", (big, big), 0)
+        ImageDraw.Draw(mask).rounded_rectangle((0, 0, big - 1, big - 1), radius=int(big * 0.25), fill=255)
+        im = tile.convert("RGBA")
+        im.putalpha(mask)
         d = ImageDraw.Draw(im)
-        d.rounded_rectangle((0, 0, big - 1, big - 1), radius=int(big * 0.25), fill="#120d12")
-        font = ImageFont.truetype(font_path, int(big * 0.60)) if font_path else ImageFont.load_default()
-        bbox = d.textbbox((0, 0), "fh", font=font)
-        d.text(((big - (bbox[2] - bbox[0])) / 2 - bbox[0], (big - (bbox[3] - bbox[1])) / 2 - bbox[1] - big * 0.02), "fh", font=font, fill="#f08ab4")
+        w = 6 * k
+        for path in FH_PATHS:
+            pts = points(path, k)
+            dense = []
+            for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+                n = max(1, int(max(abs(x1 - x0), abs(y1 - y0)) / 2))
+                dense += [(x0 + (x1 - x0) * i / n, y0 + (y1 - y0) * i / n) for i in range(n + 1)]
+            for x, y in dense:
+                d.ellipse((x - w / 2, y - w / 2, x + w / 2, y + w / 2), fill="#120d12")
         im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, name))
 
 
 def write_static():
-    favicon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#120d12"/>'
-               '<text x="32" y="45" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-style="italic" font-size="38" fill="#f08ab4">fh</text></svg>')
+    favicon = FH_SVG
     open(os.path.join(ROOT, "favicon.svg"), "w", encoding="utf-8").write(favicon)
     make_favicon_pngs()
     open(os.path.join(ROOT, ".nojekyll"), "w").write("")
