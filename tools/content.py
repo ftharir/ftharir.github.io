@@ -383,7 +383,6 @@ RESEARCH = [
     },
     {
         "role": "Research task — 3D molecular structures",
-        "supervisors": "Dr. Mohammad Hossein Rohban",
         "org": "Sharif University of Technology lab",
         "period": "mid-2024", "color": "butter",
         "summary": "A lab task on how the type of generated 3D structure affects molecular property prediction, with the PVD model as the reference.",
