@@ -320,6 +320,7 @@ def page_contact():
   <div class="card compact c-green reveal"><div class="top"><span class="area"><i>{icon("grid")}</i>Location</span></div><h3>{esc(PROFILE["location"])}</h3><p>Remote collaboration is fine.</p></div>
 </div>
 <h2>Send me a message</h2>
+<p class="lead" style="margin-top:-6px">For collaboration, or even just to say hi.</p>
 <form class="box c-white contact-form reveal" id="contact-form" data-endpoint="{esc(CONTACT_FORM_ENDPOINT)}" data-mailto="{PROFILE["email"]}" novalidate>
   <div class="form-grid">
     <label>Your name<input type="text" name="name" autocomplete="name" required maxlength="80" placeholder="Jane Doe"></label>
@@ -329,7 +330,6 @@ def page_contact():
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
   <div class="btn-row"><button class="btn" type="submit">Send message {icon("arrow")}</button></div>
   <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-  <p class="muted small">Your message is sent to my email. No tracking, no cookies.</p>
 </form>'''
     return shell("Contact", "Contact Fatemeh Harirforoush: email, LinkedIn and GitHub.", "/contact/", body, crumbs=[("Home", "/"), ("Contact", None)])
 
