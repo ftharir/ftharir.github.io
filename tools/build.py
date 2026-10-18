@@ -12,7 +12,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from content import (ABOUT_PARAGRAPHS, AREAS, CONTACT_FORM_ENDPOINT, EDUCATION, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
+from content import (ABOUT_PARAGRAPHS, ACTIVITIES, AREAS, CONTACT_FORM_ENDPOINT, COURSES, EDUCATION, LITERATURE, METHODS, RESEARCH_ABOUT_SURVEY, RESEARCH_INTRO, EXPERIENCE, PROFILE, PROJECTS,  # noqa: E402
                      PUBLICATIONS, RESEARCH, SITE_URL, SKILLS)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -94,7 +94,7 @@ def panel():
   </div>
 </section>
 <section class="p-card"><h4>Projects by area <small>{len(PROJECTS)} total</small></h4><div class="bars">{bars}</div></section>
-<section class="p-card now"><h4>Right now</h4><p><b>AI Software Engineering Intern</b>Project owner of an AI-powered data labeling platform at Sharif Setup.</p><small>August 2026 – present</small></section>
+<section class="p-card now"><h4>Right now</h4><p><b>AI Software Engineering Intern</b>Building an LLM-based technical resume evaluation service at Sharif Setup, after delivering an AI data labeling platform.</p><small>August 2026 – present</small></section>
 </div></aside>'''
 
 
@@ -160,7 +160,8 @@ def write(path, content):
 
 # ---------------------------------------------------------------- pages
 def page_home():
-    featured = [p for p in PROJECTS if p["slug"] in ("industrial-gauge-localization", "explainable-skin-disease-classification", "voiceledger", "telegram-services-platform")]
+    order = ["ai-resume-evaluation-service", "ai-data-labeling-platform", "industrial-gauge-localization", "explainable-skin-disease-classification", "voiceledger", "telegram-services-platform"]
+    featured = [next(p for p in PROJECTS if p["slug"] == k) for k in order]
     pills = "".join(f'<a href="{href}">{esc(label)}</a>' for href, label, _ in NAV[2:])
     body = f'''<p class="eyebrow">Hello, I'm Fatemeh</p>
 <h1>AI systems, from <em>messy data</em> to a working product.</h1>
@@ -193,7 +194,7 @@ def page_about():
 <div class="grid-2">
   <div class="box sand reveal"><h3>Based in</h3><p>{esc(PROFILE["location"])}</p></div>
   <div class="box sand reveal"><h3>Education</h3><p>B.Sc. Computer Engineering (2022 – 2026), with advanced AI and machine-learning courses audited at Sharif University of Technology.</p></div>
-  <div class="box sand reveal"><h3>Now</h3><p>AI Software Engineering Intern and project owner of a data labeling platform at Sharif Setup.</p></div>
+  <div class="box sand reveal"><h3>Now</h3><p>AI Software Engineering Intern at Sharif Setup: delivered a data labeling platform, now building an LLM-based resume evaluation service.</p></div>
   <div class="box sand reveal"><h3>Research</h3><p>Predictive maintenance with Transformers and diffusion models; computer vision; neuroimaging with graph neural networks.</p></div>
 </div>
 <h2>Where to go next</h2>
@@ -205,15 +206,25 @@ def timeline(items, with_kind=True):
     out = []
     for it in items:
         meta = f'<span class="pill">{esc(it["period"])}</span>' + (f'<span class="pill">{esc(it["kind"])}</span>' if it.get("kind") else "")
+        if it.get("sections"):
+            inner = ""
+            for sec in it["sections"]:
+                state = "done" if sec["status"].lower() == "completed" else "wip"
+                lnk = f'<p><a class="btn ghost" href="{sec["link"]}">Read the case study {icon("arrow")}</a></p>' if sec.get("link") else ""
+                inner += (f'<div class="sub"><h4>{esc(sec["title"])} <span class="status {state}">{esc(sec["status"])}</span></h4>'
+                          f'{ticks(sec["bullets"])}{chips(sec["tech"])}{lnk}</div>')
+            out.append(f'<article class="t-item reveal" style="--dot:{COLOR_VAR[it["color"]]}"><div class="t-meta">{meta}</div>'
+                       f'<h3>{esc(it["role"])}</h3><p class="org">{esc(it["org"])}</p>{inner}</article>')
+            continue
         link = f'<p><a class="btn ghost" href="{it["link"]}">Read the case study {icon("arrow")}</a></p>' if it.get("link") else ""
         out.append(f'<article class="t-item reveal" style="--dot:{COLOR_VAR[it["color"]]}"><div class="t-meta">{meta}</div>'
-                   f'<h3>{esc(it["role"])}</h3><p class="org">{esc(it["org"])}</p>{ticks(it["bullets"])}{chips(it["tech"])}{link}</article>')
+                   f'<h3>{esc(it["role"])}</h3><p class="org">{esc(it["org"])}</p>' + (f'<p class="summary">{esc(it["summary"])}</p>' if it.get("summary") else "") + f'{ticks(it["bullets"])}{chips(it["tech"])}{link}</article>')
     return '<div class="timeline">' + "".join(out) + "</div>"
 
 
 def page_experience():
     body = f'''<h1>Professional <em>experience</em></h1>
-<p class="lead">Engineering work: a data labeling platform, freelance AI products and an applied data-science bootcamp.</p>
+<p class="lead">Engineering work: an AI data labeling platform, an LLM-based resume evaluation service, freelance AI products and an applied data-science bootcamp.</p>
 {timeline(EXPERIENCE)}'''
     return shell("Experience", "Professional experience of Fatemeh Harirforoush: AI software engineering internship, freelance projects and data science bootcamp.", "/experience/", body,
                  crumbs=[("Home", "/"), ("Experience", None)])
@@ -221,20 +232,45 @@ def page_experience():
 
 def page_research():
     pubs = "".join(
-        f'<div class="box c-lav reveal"><p class="eyebrow">Publication</p><h3>{esc(x["title"])}</h3><p class="muted">{esc(x["status"])}</p>'
-        + (f'<p style="margin:14px 0 0"><a class="btn" href="{esc(x["url"])}" target="_blank" rel="noopener">Read the paper on ResearchGate {icon("arrow")}</a></p>' if x.get("url") else "")
-        + "</div>" for x in PUBLICATIONS)
+        f'<div class="box c-lav reveal"><p class="eyebrow">Publication</p><h3>{esc(x["title"])}</h3>'
+        f'<p style="margin-bottom:6px">{esc(x["authors"])}</p><p class="muted">{esc(x["status"])}</p>'
+        f'<div class="btn-row" style="margin-top:14px">' + "".join(
+            f'<a class="btn{"" if i == 0 else " ghost"}" href="{esc(u)}" target="_blank" rel="noopener">{esc(t)} {icon("arrow")}</a>'
+            for i, (t, u) in enumerate(x["links"])) + "</div></div>" for x in PUBLICATIONS)
+    intro = "".join(f"<p>{esc(t)}</p>" for t in RESEARCH_INTRO)
+    survey = "".join(f"<p>{esc(t)}</p>" for t in RESEARCH_ABOUT_SURVEY)
+    methods = "".join(
+        f'<div class="card compact c-{col} reveal"><h3>{esc(name)}</h3><p>{esc(text)}</p></div>' for name, col, text in METHODS)
+    acts = "".join(
+        f'<article class="t-item reveal" style="--dot:{COLOR_VAR[a_["color"]]}"><div class="t-meta"><span class="pill">{esc(a_["period"])}</span></div>'
+        f'<h3>{esc(a_["title"])}</h3><p class="org">{esc(a_["org"])}</p>{"<p>" + esc(a_["text"]) + "</p>" if a_["text"] else ""}</article>' for a_ in ACTIVITIES)
+    courses = "".join(f'<li class="chip">{esc(t)} · {esc(p)}</li>' for t, p in COURSES)
     body = f'''<h1>Research &amp; <em>academic</em> work</h1>
-<p class="lead">Research roles at Sharif University of Technology and the Sharif Center for Information Systems and Data Science, and the publication that came out of them.</p>
-<h2 style="margin-top:8px">Publications</h2>
+<p class="lead">Research roles at Sharif University of Technology and the Sharif Center for Information Systems and Data Science, the survey that came out of them, and the academic activities around them.</p>
+<div class="grid-3">
+  <div class="stat c-lav reveal"><b>{len(RESEARCH)}</b><span>research roles and tasks</span></div>
+  <div class="stat c-pink reveal"><b>1</b><span>survey: SSRN preprint, under review at a Q1 journal</span></div>
+  <div class="stat c-green reveal"><b>2024</b><span>research work since</span></div>
+</div>
+<h2>What I research</h2>
+<div class="box sand reveal">{intro}</div>
+<h2>Publication</h2>
 {pubs}
+<div class="box reveal" style="margin-top:16px"><h3>About the survey</h3>{survey}</div>
 <h2>Research positions and tasks</h2>
 {timeline(RESEARCH)}
-<h2>Academic coursework</h2>
-<div class="box sand reveal"><p>Audited advanced AI and machine-learning courses at Sharif University of Technology, Tehran, alongside the B.Sc. in Computer Engineering.</p></div>
+<h2>Methods I worked with, in short</h2>
+<p class="muted" style="margin-top:-6px">Plain-language background for the methods named above; these are explanations, not results.</p>
+<div class="cards">{methods}</div>
+<h2>Academic activities</h2>
+<div class="timeline">{acts}</div>
+<h2>Courses and workshops</h2>
+<div class="box reveal"><ul class="chips" style="margin:0">{courses}</ul></div>
+<h2>Literature areas I studied</h2>
+<div class="box reveal">{chips(LITERATURE)}</div>
 <h2>Research topics</h2>
-<div class="box reveal">{chips(["Predictive maintenance", "Transformers", "Contrastive learning", "Physics-informed neural networks", "Diffusion models", "Retrieval-augmented generation", "Explainable AI", "Graph neural networks", "fMRI", "Object detection and tracking", "Molecular structures"])}</div>'''
-    return shell("Research", "Research experience and publications: predictive maintenance, computer vision for quadcopters, neuroimaging with graph neural networks, molecular structures.", "/research/", body,
+<div class="box reveal">{chips(["Predictive maintenance", "Prescriptive maintenance", "Transformers", "Contrastive learning", "Physics-informed neural networks", "Diffusion models", "Retrieval-augmented generation", "Explainable AI", "Graph neural networks", "fMRI and functional connectivity", "Object detection and tracking", "Molecular structures"])}</div>'''
+    return shell("Research", "Research experience and publications: predictive maintenance, computer vision for quadcopters, neuroimaging with graph neural networks, molecular structures, and academic activities.", "/research/", body,
                  crumbs=[("Home", "/"), ("Research", None)])
 
 
@@ -268,6 +304,8 @@ def page_project(i, p):
     if p.get("table"):
         rows = "".join(f"<tr><td>{esc(a)}</td><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in p["table"])
         table = f'<h2>Original versus follow-up</h2><table><thead><tr><th>Project</th><th>Original</th><th>Follow-up</th></tr></thead><tbody>{rows}</tbody></table>'
+    repo_btn = (f'<a class="btn" href="{PROFILE["github"]}/{p["repo"]}" target="_blank" rel="noopener">{icon("github")} View on GitHub</a>'
+                if p.get("repo") else '<span class="pill dark">Company project · no public repository</span>')
     prev_p, next_p = PROJECTS[i - 1] if i > 0 else None, PROJECTS[i + 1] if i < len(PROJECTS) - 1 else None
     nav = '<div class="next-prev">' + (f'<a class="btn ghost" href="/projects/{prev_p["slug"]}/">← {esc(prev_p["title"])}</a>' if prev_p else "<span></span>") + \
           (f'<a class="btn ghost" href="/projects/{next_p["slug"]}/">{esc(next_p["title"])} →</a>' if next_p else "<span></span>") + "</div>"
@@ -277,7 +315,7 @@ def page_project(i, p):
 <p class="lead">{esc(p["lead"])}</p>
 <div class="facts">{facts}</div>
 {chips(p["tech"])}
-<div class="btn-row" style="margin-top:18px"><a class="btn" href="{PROFILE["github"]}/{p["repo"]}" target="_blank" rel="noopener">{icon("github")} View on GitHub</a><a class="btn ghost" href="/projects/">All projects</a></div>
+<div class="btn-row" style="margin-top:18px">{repo_btn}<a class="btn ghost" href="/projects/">All projects</a></div>
 </section>
 <h2 style="margin-top:8px">The problem</h2><p>{esc(p["problem"])}</p>
 <h2>What I built</h2>{ticks(p["built"])}

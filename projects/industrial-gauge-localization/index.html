@@ -13,7 +13,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css?v=79133843">
+<link rel="stylesheet" href="/assets/css/style.css?v=4e3cdd7b">
 
 </head>
 <body>
@@ -38,7 +38,7 @@
 <h2>What I built</h2><ul class="ticks"><li>Annotated 435 frames by hand with LabelMe (four annotation sets, two passes) and converted them to YOLO format.</li><li>Trained a YOLOv5s detector and exported it to PyTorch and ONNX weights.</li><li>Compared it against a classical computer-vision baseline and tested on unseen videos.</li><li>Wrote a data audit (it found that the original train and validation folders overlapped, so a fresh 348 / 87 split was made) and documented a model card and a dataset card.</li></ul>
 <h2>Results</h2><ul class="ticks"><li>mAP@0.5 of 0.995 and mAP@0.5:0.95 of 0.978 on the validation split.</li><li>The validation set (87 of 435 frames) is a random split of continuous video, so near-duplicates of training frames land in validation: the scores describe the same recordings, not new cameras. The audit also found that the original train and validation folders overlapped, so they were discarded. The repository states all of this openly.</li></ul>
 <h2>Figures</h2><div class="gallery one"><figure><img src="/assets/img/projects/industrial-gauge-localization/gauge-detection.gif" alt="The detector running on video." loading="lazy"><figcaption>The detector running on video.</figcaption></figure><figure><img src="/assets/img/projects/industrial-gauge-localization/classical-cv.webp" alt="Classical computer-vision baseline compared with the detector." loading="lazy"><figcaption>Classical computer-vision baseline compared with the detector.</figcaption></figure></div>
-<div class="next-prev"><span></span><a class="btn ghost" href="/projects/cost-allocation-data-analysis/">Cost allocation data analysis →</a></div>
+<div class="next-prev"><a class="btn ghost" href="/projects/ai-data-labeling-platform/">← AI-powered data labeling platform</a><a class="btn ghost" href="/projects/cost-allocation-data-analysis/">Cost allocation data analysis →</a></div>
     <footer class="site"><span>© 2026 Fatemeh Harirforoush</span><span>Designed and built by hand · static site on GitHub Pages</span></footer>
   </main>
   <aside class="panel" aria-label="Profile summary"><div class="panel-inner">
@@ -52,8 +52,8 @@
     <a href="mailto:fatemeh.harirforoush04@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" class=""><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/></svg>Email</a>
   </div>
 </section>
-<section class="p-card"><h4>Projects by area <small>9 total</small></h4><div class="bars"><div class="bar"><span>Computer vision</span><i style="--c:var(--pink);--w:60%"></i><em>3</em></div><div class="bar"><span>Data analysis</span><i style="--c:var(--peach);--w:80%"></i><em>4</em></div><div class="bar"><span>Machine learning</span><i style="--c:var(--lav);--w:100%"></i><em>5</em></div><div class="bar"><span>Backend</span><i style="--c:var(--green);--w:40%"></i><em>2</em></div><div class="bar"><span>Speech &amp; LLM</span><i style="--c:var(--sky);--w:20%"></i><em>1</em></div><div class="bar"><span>Research</span><i style="--c:var(--butter);--w:20%"></i><em>1</em></div></div></section>
-<section class="p-card now"><h4>Right now</h4><p><b>AI Software Engineering Intern</b>Project owner of an AI-powered data labeling platform at Sharif Setup.</p><small>August 2026 – present</small></section>
+<section class="p-card"><h4>Projects by area <small>11 total</small></h4><div class="bars"><div class="bar"><span>Computer vision</span><i style="--c:var(--pink);--w:43%"></i><em>3</em></div><div class="bar"><span>Data analysis</span><i style="--c:var(--peach);--w:57%"></i><em>4</em></div><div class="bar"><span>Machine learning</span><i style="--c:var(--lav);--w:100%"></i><em>7</em></div><div class="bar"><span>Backend</span><i style="--c:var(--green);--w:57%"></i><em>4</em></div><div class="bar"><span>Speech &amp; LLM</span><i style="--c:var(--sky);--w:29%"></i><em>2</em></div><div class="bar"><span>Research</span><i style="--c:var(--butter);--w:14%"></i><em>1</em></div></div></section>
+<section class="p-card now"><h4>Right now</h4><p><b>AI Software Engineering Intern</b>Building an LLM-based technical resume evaluation service at Sharif Setup, after delivering an AI data labeling platform.</p><small>August 2026 – present</small></section>
 </div></aside>
 </div>
 <script src="/assets/js/main.js?v=7a0c14ee" defer></script>

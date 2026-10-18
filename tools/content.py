@@ -36,6 +36,52 @@ AREAS = [
 
 PROJECTS = [
     {
+        "slug": "ai-resume-evaluation-service",
+        "title": "AI technical resume evaluation service",
+        "color": "sky", "areas": ["ml", "backend"], "label": "Internship · LLM service",
+        "metric": "in progress",
+        "summary": "An LLM-based service that scores candidate resumes against a job description with evidence-based reasoning.",
+        "lead": "Internship project at Sharif Setup: a service that evaluates candidate resumes (PDF or DOCX) against job descriptions and team-specific requirements and explains its score instead of counting keywords.",
+        "facts": [("1–10", "match score with reasoning"), ("PDF / DOCX", "resume formats"), ("FastAPI", "REST service"), ("In progress", "status")],
+        "tech": ["Python", "FastAPI", "LLMs", "Pydantic", "Streamlit", "REST APIs", "Docker"],
+        "problem": "Keyword matching rejects good candidates and accepts weak ones. A hiring team needs a score that reflects the actual requirements of the role, with the evidence behind it.",
+        "built": [
+            "An LLM-based evaluation that produces a 1–10 match score with evidence-based reasoning, instead of simple keyword matching.",
+            "A FastAPI REST service with resume parsing, requirement processing, a scoring engine and downloadable PDF report generation.",
+            "A decoupled Streamlit MVP interface on top of the API.",
+            "A provider-agnostic model layer connected to the organization's internal LLM API: configurable providers, Pydantic-validated structured outputs, retry and timeout handling, and latency and token-usage logging.",
+        ],
+        "results": [
+            "The project is still in progress, so there are no final results to report yet.",
+            "Company project: there is no public repository.",
+        ],
+        "flow": ["Resume (PDF / DOCX)", "Parsing", "Job requirements", "Scoring engine (LLM)", "Score 1–10 with evidence", "PDF report"],
+        "images": [],
+    },
+    {
+        "slug": "ai-data-labeling-platform",
+        "title": "AI-powered data labeling platform",
+        "color": "green", "areas": ["ml", "backend", "speech"], "label": "Internship · ML platform",
+        "metric": "completed",
+        "summary": "A multimodal annotation platform for ASR, OCR and vehicle attributes with AI pseudo-labels and human review.",
+        "lead": "Internship project at Sharif Setup, owned end to end: a platform for labeling speech, text-in-image and vehicle-attribute data with AI assistance and human quality control.",
+        "facts": [("3", "labeling pipelines: ASR, OCR, vehicle attributes"), ("Streamlit", "annotation interface"), ("PostgreSQL", "database"), ("Completed", "status")],
+        "tech": ["Python", "Streamlit", "PostgreSQL", "SQLAlchemy", "Docker", "Docker Compose", "Git"],
+        "problem": "Training ASR, OCR and vehicle-attribute models needs labeled data, and labeling everything by hand is slow. The platform combines AI-generated pseudo-labels with human correction and quality control.",
+        "built": [
+            "The complete software architecture, from system design to deployment: application structure, database schema, authentication and core workflows.",
+            "A Streamlit-based multimodal annotation platform supporting ASR, OCR and vehicle attribute recognition pipelines.",
+            "AI-based pseudo-labeling, human-in-the-loop correction and quality-control workflows.",
+            "Docker and Docker Compose deployment.",
+        ],
+        "results": [
+            "Delivered end to end as project owner, as part of the 12-week internship.",
+            "Company project: there is no public repository.",
+        ],
+        "flow": ["Raw data (audio, images)", "AI pseudo-labels", "Human correction", "Quality control", "Labeled dataset"],
+        "images": [],
+    },
+    {
         "slug": "industrial-gauge-localization", "gallery": "one",
         "title": "Industrial gauge localization",
         "repo": "industrial-gauge-localization",
@@ -260,12 +306,27 @@ EXPERIENCE = [
         "role": "AI Software Engineering Intern · Project Owner",
         "org": "Sharif Setup — Generative AI startup",
         "period": "August 2026 – present", "kind": "12-week internship", "color": "sky",
-        "bullets": [
-            "Owned the end-to-end development of an AI-powered data labeling platform: system design, application structure, database schema, authentication and core workflows, through to deployment.",
-            "Built a Streamlit multimodal annotation platform for ASR, OCR and vehicle attribute recognition, with AI-based pseudo-labeling, human-in-the-loop correction and quality control.",
-            "Implemented project and dataset management, standardized data pipelines and machine-learning workflows for vehicle attribute recognition: dataset preparation, fine-tuning, evaluation and inference.",
+        "sections": [
+            {
+                "title": "AI-powered data labeling platform", "status": "Completed",
+                "bullets": [
+                    "Owned the end-to-end development of an AI-powered data labeling platform: system design, application structure, database schema, authentication and core workflows, through to deployment.",
+                    "Built a Streamlit multimodal annotation platform for ASR, OCR and vehicle attribute recognition, with AI-based pseudo-labeling, human-in-the-loop correction and quality control.",
+                ],
+                "tech": ["Python", "Streamlit", "PostgreSQL", "SQLAlchemy", "Docker", "Docker Compose", "Git"],
+                "link": "/projects/ai-data-labeling-platform/",
+            },
+            {
+                "title": "AI-powered technical resume evaluation service", "status": "In progress",
+                "bullets": [
+                    "Developing an LLM-based service that evaluates candidate resumes (PDF/DOCX) against job descriptions and team-specific requirements, producing a 1–10 match score with evidence-based reasoning instead of simple keyword matching.",
+                    "Designing a FastAPI REST service with resume parsing, requirement processing, a scoring engine and downloadable PDF report generation, plus a decoupled Streamlit MVP interface.",
+                    "Building a provider-agnostic model layer on the organization's internal LLM API: configurable providers, Pydantic-validated structured outputs, retry and timeout handling, and latency and token-usage logging.",
+                ],
+                "tech": ["Python", "FastAPI", "LLMs", "Pydantic", "Streamlit", "REST APIs", "Docker"],
+                "link": "/projects/ai-resume-evaluation-service/",
+            },
         ],
-        "tech": ["Python", "Streamlit", "PostgreSQL", "SQLAlchemy", "Docker Compose", "PyTorch", "Computer vision"],
     },
     {
         "role": "Freelance AI software engineer",
@@ -295,25 +356,34 @@ RESEARCH = [
         "role": "AI Researcher — LLMs, Transformers and scientific applications",
         "org": "Sharif Center for Information Systems and Data Science",
         "period": "March 2025 – June 2026", "color": "lav",
+        "summary": "Research on keeping industrial equipment healthy: predicting the condition of batteries and bearings with modern deep-learning methods, and surveying how retrieval-augmented language models can turn predictions into maintenance decisions.",
         "bullets": [
-            "Research on predictive maintenance for industrial systems with Transformers, contrastive learning, physics-informed neural networks and diffusion models, for battery and bearing health monitoring.",
-            "Resulted in a manuscript submitted to a Q1 journal, currently under review.",
+            "Research on predictive maintenance for industrial systems, focused on battery and bearing health monitoring.",
+            "Developed deep-learning approaches with Transformer-based architectures, contrastive learning, physics-informed neural networks (PINNs) and diffusion models.",
+            "Contributed to model implementation, experimental design, evaluation and the research publication.",
+            "Rapid prototyping and experimentation to improve model performance and research outcomes.",
+            "Worked in a multidisciplinary team in a fast-paced, research-oriented environment.",
+            "Co-authored a survey on retrieval-augmented generation (RAG)-driven systems for end-to-end maintenance decision-making, bridging predictive and prescriptive maintenance (preprint on SSRN; under review at a Q1 journal).",
         ],
-        "tech": ["Transformers", "Contrastive learning", "PINNs", "Diffusion models"],
+        "tech": ["Transformers", "Contrastive learning", "PINNs", "Diffusion models", "RAG", "Predictive maintenance"],
     },
     {
         "role": "Research Assistant — Computer vision",
         "org": "Sharif University of Technology lab",
         "period": "June 2024 – February 2025", "color": "pink",
+        "summary": "Computer vision for quadcopter platforms: seeing and following objects from a moving camera, in real time.",
         "bullets": [
-            "Deep-learning computer-vision solutions for quadcopter platforms: object detection, tracking and visual recognition.",
+            "Research on computer-vision systems for quadcopter platforms.",
+            "Developed approaches for real-time object detection and tracking, image enhancement and visual recognition.",
+            "Applied deep-learning models to improve recognition and overall computer-vision performance on the quadcopter platforms.",
         ],
-        "tech": ["Object detection", "Tracking", "Deep learning"],
+        "tech": ["Object detection", "Object tracking", "Image enhancement", "Visual recognition", "Deep learning"],
     },
     {
         "role": "Research task — 3D molecular structures",
         "org": "Sharif University of Technology lab",
         "period": "mid-2024", "color": "butter",
+        "summary": "A lab task on how the type of generated 3D structure affects molecular property prediction, with the PVD model as the reference.",
         "bullets": [
             "Generated approximate, UFF-optimised and flat graph 3D structures for the BACE, BBBP and ClinTox datasets, so that a structure-based model (PVD, pre-training via denoising) can be evaluated on each of them.",
             "Published as the MoleculeNet 3D structure study, with a failure analysis and a small comparison experiment.",
@@ -325,27 +395,34 @@ RESEARCH = [
         "role": "Research Assistant — Neuroimaging and computer vision",
         "org": "School of AI, Sharif University of Technology",
         "period": "July 2024 – January 2025", "color": "green",
+        "summary": "Estimating a person's mental state from brain-imaging data, and exploring graph neural networks as a way to represent the brain.",
         "bullets": [
-            "Machine-learning and deep-learning models for mental-state estimation from fMRI data, exploring functional connectivity analysis and graph neural networks.",
+            "Developed and implemented machine-learning and deep-learning models that analyze brain-imaging (fMRI) data to estimate mental states.",
+            "Analyzed functional connectivity patterns in fMRI data.",
+            "Explored graph neural networks (GNNs) for brain representation learning.",
         ],
-        "tech": ["fMRI", "Graph neural networks", "Functional connectivity"],
+        "tech": ["fMRI", "Functional connectivity", "Graph neural networks", "Mental-state estimation"],
     },
 ]
 
 PUBLICATIONS = [
     {
         "title": "From Predictive Maintenance to Prescriptive: A Survey of Retrieval-Augmented Generation-Driven Systems for End-to-End Maintenance Decision-Making",
-        "status": "Submitted to a Q1 journal, under review, 2026.",
-        "url": "https://www.researchgate.net/publication/410821744_From_predictive_maintenance_to_prescriptive_A_survey_of_Retrieval-Augmented_Generation-Driven_Systems_for_End-to-End_Maintenance_Decision-Making",
+        "authors": "B. H. Khalaj, M. Rohban, F. Harirforoush, et al.",
+        "status": "Preprint on SSRN, 2026. Submitted to a Q1 journal, under review.",
+        "links": [
+            ("SSRN preprint (DOI 10.2139/ssrn.7180409)", "https://doi.org/10.2139/ssrn.7180409"),
+            ("ResearchGate", "https://www.researchgate.net/publication/410821744_From_predictive_maintenance_to_prescriptive_A_survey_of_Retrieval-Augmented_Generation-Driven_Systems_for_End-to-End_Maintenance_Decision-Making"),
+        ],
     }
 ]
 
 SKILLS = [
-    ("Programming and software engineering", "peach", ["Python", "Java", "SQL", "FastAPI", "REST APIs", "Object-oriented programming", "Git", "Linux"]),
+    ("Programming and software engineering", "peach", ["Python", "Java", "SQL", "FastAPI", "REST APIs", "Pydantic", "OpenAPI / Swagger", "Object-oriented programming", "Git", "Linux"]),
     ("Machine learning and deep learning", "lav", ["scikit-learn", "PyTorch", "TensorFlow", "Neural networks", "CNNs", "RNNs", "LSTM", "Transformers", "Transfer learning", "GANs", "Diffusion models", "Model evaluation"]),
-    ("LLMs and generative AI", "sky", ["Large language models", "Prompt engineering", "Retrieval-augmented generation (RAG)", "Hugging Face Transformers"]),
+    ("LLMs and generative AI", "sky", ["Large language models", "Prompt engineering", "Retrieval-augmented generation (RAG)", "Hugging Face Transformers", "LLM API integration", "Structured outputs", "LLM-based evaluation"]),
     ("Computer vision", "pink", ["OpenCV", "Image processing", "Object detection", "Object tracking", "YOLO", "Medical image analysis"]),
-    ("Data engineering and analytics", "butter", ["pandas", "NumPy", "SciPy", "Data processing", "Data cleaning", "Data validation", "Power BI"]),
+    ("Data engineering and analytics", "butter", ["pandas", "NumPy", "SciPy", "Data processing", "Data cleaning", "Data validation", "Document parsing (PDF / DOCX)", "Power BI"]),
     ("Backend, databases and deployment", "green", ["PostgreSQL", "SQLAlchemy", "Redis", "Docker", "Docker Compose", "Streamlit"]),
     ("AI research", "lav", ["Contrastive learning", "Explainable AI (XAI)", "Graph neural networks", "Physics-informed neural networks"]),
 ]
@@ -361,6 +438,57 @@ EDUCATION = [
 
 ABOUT_PARAGRAPHS = [
     "I am a Computer Engineering graduate and AI software engineer. What I enjoy most is the whole path of a project: understanding messy data, building a model, wrapping it in software that other people can use, and then checking honestly whether it works.",
-    "My research and engineering work covers Transformers and large language models, computer vision, speech processing and applied machine learning. In research I have worked on predictive maintenance for industrial systems (a manuscript is under review at a Q1 journal), on computer vision for quadcopters and on neuroimaging with graph neural networks. In engineering I have built a data labeling platform, a Persian voice-report assistant and an asynchronous Telegram service platform.",
+    "My research and engineering work covers Transformers and large language models, computer vision, speech processing and applied machine learning. In research I have worked on predictive maintenance for industrial systems (a manuscript is under review at a Q1 journal), on computer vision for quadcopters and on neuroimaging with graph neural networks. In engineering I have built a data labeling platform and am now building an LLM-based resume evaluation service, besides a Persian voice-report assistant and an asynchronous Telegram service platform.",
     "I care about evaluation that does not flatter the model: leakage checks, held-out test sets, baselines and error analysis. Several of my projects document exactly where a first, higher score turned out to be wrong.",
+]
+
+
+RESEARCH_INTRO = [
+    "My research sits between applied machine learning and engineering problems: keeping industrial equipment healthy (predictive maintenance), helping machines see (computer vision for quadcopters) and reading brain-imaging data (neuroimaging).",
+    "The way of working is the same in all three: implement the model, design the experiment, evaluate it carefully, and write it up.",
+]
+
+RESEARCH_ABOUT_SURVEY = [
+    "Predictive maintenance asks when a machine will fail. Prescriptive maintenance goes one step further and asks what to do about it. The survey looks at how retrieval-augmented generation (RAG), where a language model answers using documents it retrieves, can connect the two into end-to-end maintenance decision-making.",
+    "It is a preprint on SSRN and has been submitted to a Q1 journal, where it is under review.",
+]
+
+# plain-language notes on the methods used in the research roles (background, not results)
+METHODS = [
+    ("Transformers", "lav", "Neural networks built on attention, which let a model weigh every part of a sequence against every other part. Used in the battery and bearing health-monitoring research."),
+    ("Contrastive learning", "pink", "Learning representations by pulling similar samples together and pushing different ones apart, so useful features can be learned with few labels."),
+    ("Physics-informed neural networks", "green", "Networks trained with the equations of the physical system as part of the loss, so predictions stay consistent with physics."),
+    ("Diffusion models", "sky", "Generative models that learn by removing noise step by step. The same denoising idea underlies the PVD model from the molecular task."),
+    ("Graph neural networks", "peach", "Networks that work on graphs, such as brain regions linked by functional connectivity, and learn from both nodes and links."),
+    ("Object detection and tracking", "butter", "Finding objects in each frame and following them over time, in real time, from a moving quadcopter camera."),
+]
+
+ACTIVITIES = [
+    {"title": "Self-driving car team member", "org": "University of Science and Research", "period": "from February 2024", "color": "green",
+     "text": "Member of a team building a self-driving car robot for the FIRA 2024 and RoboCup Iran Open 2025 competitions. Task: edge detection with OpenCV (image and video processing, CNNs)."},
+    {"title": "Head teaching assistant, Fundamentals of Computational Intelligence", "org": "University of Science and Research", "period": "from February 2024", "color": "lav", "text": ""},
+    {"title": "Observer, Machine Learning course CS229", "org": "Amirkabir University of Technology", "period": "from February 2024", "color": "peach", "text": ""},
+    {"title": "Head of the IT team, Sadra Job Fair", "org": "University of Science and Research", "period": "January 2024", "color": "sky", "text": ""},
+    {"title": "Writing team member, BYTE Magazine", "org": "Computer Engineering Department, Sharif University of Technology", "period": "from August 2023", "color": "butter", "text": ""},
+    {"title": "Auditing student, advanced AI and machine-learning courses", "org": "Sharif University of Technology", "period": "September 2023 – April 2024", "color": "pink",
+     "text": "Attended advanced in-person courses in artificial intelligence and machine learning as an audit student."},
+]
+
+COURSES = [
+    ("CS229: Machine Learning", "Stanford University"),
+    ("CS231n: Convolutional Neural Networks for Visual Recognition", "Stanford University"),
+    ("Neural Networks and Deep Learning (Deep Learning Specialization)", "DeepLearning.AI"),
+    ("PyTorch for Deep Learning and Machine Learning", "freeCodeCamp"),
+    ("OpenCV", "freeCodeCamp"),
+    ("Large Language Models workshop (WSS)", "Sharif University of Technology"),
+    ("Linux", "Quera"),
+]
+
+LITERATURE = [
+    "Maintenance strategies: preventive, predictive and prescriptive",
+    "Retrieval- and knowledge-augmented generation (RAG, KAG)",
+    "Decision mining in process-aware information systems",
+    "Log anomaly detection with retrieval-augmented generation",
+    "Voice-enabled digital assistants for maintenance",
+    "Fault diagnosis and forecasting for wind and solar energy",
 ]

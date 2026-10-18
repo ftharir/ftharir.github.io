@@ -272,3 +272,12 @@ a.card:hover .more { gap: 10px; }
 .card .mail { font-size: 1.12rem; overflow-wrap: anywhere; }
 
 .card .area i svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- sections inside one position ---------- */
+.t-item .sub { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 16px; }
+.t-item .sub:first-of-type { border-top: 0; margin-top: 8px; padding-top: 0; }
+.t-item h4 { margin: 0 0 4px; font-size: 1.05rem; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.status { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; }
+.status.done { background: var(--green); } .status.wip { background: var(--butter); }
+
+.t-item .summary { color: var(--ink-2); font-size: 1rem; margin: 0 0 6px; }
