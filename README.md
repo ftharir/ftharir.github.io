@@ -18,7 +18,7 @@ A dark, minimal, deep-pink multi-page site (inspired by a one-page CV layout: pi
 | `/skills/` | Skills grouped by area |
 | `/education/` | Degrees and programs |
 | `/contact/` | Email, LinkedIn, GitHub |
-| `/fa/…` | The same pages in Persian (right to left); an EN / فا switch in the top bar links the two versions |
+| `/fa/…` | The same pages in Persian (right to left); an EN / FA switch in the top bar links the two versions |
 
 ## How the site is made
 

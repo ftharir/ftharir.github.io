@@ -237,10 +237,10 @@ def lang_bits(page, path, lang):
         return page.replace("<!--LANGSW-->", "").replace("<!--ALT-->", "")
     if lang == "en":
         sw = (f'<a class="on" href="{path}" hreflang="en" lang="en" aria-current="true">EN</a>'
-              f'<a href="{fa_path}" hreflang="fa" lang="fa">فا</a>')
+              f'<a href="{fa_path}" hreflang="fa" lang="fa">FA</a>')
     else:
         sw = (f'<a href="{path}" hreflang="en" lang="en">EN</a>'
-              f'<a class="on" href="{fa_path}" hreflang="fa" lang="fa" aria-current="true">فا</a>')
+              f'<a class="on" href="{fa_path}" hreflang="fa" lang="fa" aria-current="true">FA</a>')
     alt = (f'<link rel="alternate" hreflang="en" href="{SITE_URL}{path}"><link rel="alternate" hreflang="fa" href="{SITE_URL}{fa_path}">'
            f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}{path}">')
     if lang == "fa":
