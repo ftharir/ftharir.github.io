@@ -16,6 +16,7 @@ from content import (ABOUT_PARAGRAPHS, ACTIVITIES, AREAS, CONTACT_FORM_ENDPOINT,
                      PUBLICATIONS, RESEARCH, SITE_URL, SKILLS)
 
 from project_details import DETAILS  # noqa: E402
+import i18n  # noqa: E402
 
 for _p in PROJECTS:
     _p.update(DETAILS.get(_p["slug"], {}))
@@ -51,6 +52,7 @@ ICONS = {
 
 
 def icon(name, cls=""):
+    cls = (cls + " arr").strip() if name == "arrow" else cls
     return f'<svg viewBox="0 0 24 24" aria-hidden="true" class="{cls}">{ICONS[name]}</svg>'
 
 
@@ -195,6 +197,7 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(full_title)}</title>
+<!--ALT-->
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE_URL}{path}">
 <meta property="og:type" content="website"><meta property="og:title" content="{esc(full_title)}"><meta property="og:description" content="{esc(desc)}">
@@ -214,6 +217,7 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 <header class="top-bar"><div class="top-inner">
   <a class="brand" href="/" aria-label="Home"><span class="name">{esc(PROFILE["name"])}</span></a>
   <nav class="nav" aria-label="Main">{nav}</nav>
+  <div class="lang-switch" role="group" aria-label="Language"><!--LANGSW--></div>
 </div></header>
 <div class="wrap"><main id="content">
 {crumb_html}
@@ -226,7 +230,31 @@ def shell(title, desc, path, body, crumbs=None, jsonld=None, og_image="/assets/i
 '''
 
 
-def write(path, content):
+def lang_bits(page, path, lang):
+    """Fill the language switch and the hreflang links of a page (path is the English path)."""
+    fa_path = "/fa" + path
+    if path.endswith(".html"):  # 404: English only
+        return page.replace("<!--LANGSW-->", "").replace("<!--ALT-->", "")
+    if lang == "en":
+        sw = (f'<a class="on" href="{path}" hreflang="en" lang="en" aria-current="true">EN</a>'
+              f'<a href="{fa_path}" hreflang="fa" lang="fa">فا</a>')
+    else:
+        sw = (f'<a href="{path}" hreflang="en" lang="en">EN</a>'
+              f'<a class="on" href="{fa_path}" hreflang="fa" lang="fa" aria-current="true">فا</a>')
+    alt = (f'<link rel="alternate" hreflang="en" href="{SITE_URL}{path}"><link rel="alternate" hreflang="fa" href="{SITE_URL}{fa_path}">'
+           f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}{path}">')
+    if lang == "fa":
+        page = page.replace('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans',
+                            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap">' + chr(10) + '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans', 1)
+    return page.replace("<!--LANGSW-->", sw).replace("<!--ALT-->", alt)
+
+
+def write(path, content, lang="en"):
+    if lang == "fa":
+        content = lang_bits(i18n.to_fa(content, path, SITE_URL), path, "fa")
+        path = "/fa" + path
+    else:
+        content = lang_bits(content, path, "en")
     full = os.path.join(ROOT, path.strip("/"), "index.html") if not path.endswith(".html") else os.path.join(ROOT, path.strip("/"))
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8", newline="\n") as f:
@@ -643,18 +671,21 @@ def write_static():
 def main():
     prepare_images()
     write_static()
-    write("/", page_home())
-    write("/about/", page_about())
-    write("/experience/", page_experience())
-    write("/research/", page_research())
-    write("/projects/", page_projects())
-    for i, p in enumerate(PROJECTS):
-        write(f"/projects/{p['slug']}/", page_project(i, p))
-    write("/skills/", page_skills())
-    write("/education/", page_education())
-    write("/contact/", page_contact())
+    pages = [("/", page_home()), ("/about/", page_about()), ("/experience/", page_experience()), ("/research/", page_research()),
+             ("/projects/", page_projects())]
+    pages += [(f"/projects/{p['slug']}/", page_project(i, p)) for i, p in enumerate(PROJECTS)]
+    pages += [("/skills/", page_skills()), ("/education/", page_education()), ("/contact/", page_contact())]
+    for path, content in pages:
+        write(path, content)
+        write(path, content, "fa")
     write("/404.html", page_404())
-    print("built", 8 + len(PROJECTS) + 1, "pages")
+    print("built", len(pages) * 2 + 1, "pages")
+    if "--missing" in sys.argv:
+        new = [t for t in i18n.missing if t not in set(i18n.KEYS)]
+        with open(i18n.KEYS_FILE, "a", encoding="utf-8") as f:
+            for t in new:
+                f.write(json.dumps(t, ensure_ascii=False) + chr(10))
+        print(len(i18n.missing), "texts without a Persian translation,", len(new), "added to fa_keys.jsonl")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,17 @@
 // Small progressive-enhancement script: the site works without it.
 (function () {
+  var fa = document.documentElement.lang === 'fa';
+  var T = fa ? {
+    one: ' پروژه', many: ' پروژه', copied: 'کپی شد',
+    invalid: 'لطفاً نام، یک ایمیل معتبر و پیام را وارد کنید.', sending: 'در حال ارسال…',
+    thanks: 'ممنون! پیام شما ارسال شد.', failed: 'متأسفانه ارسال نشد. لطفاً مستقیماً ایمیل بزنید.',
+    mail: 'برنامه‌ی ایمیل شما با پیام آماده باز می‌شود.', subject: 'پیام از '
+  } : {
+    one: ' project', many: ' projects', copied: 'Copied',
+    invalid: 'Please fill in your name, a valid email and a message.', sending: 'Sending…',
+    thanks: 'Thank you! Your message was sent.', failed: 'Sorry, sending failed. Please email me directly.',
+    mail: 'Your email app should open with the message ready to send.', subject: 'Message from '
+  };
   // reveal on scroll
   var items = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -27,7 +39,7 @@
     var live = document.getElementById('filter-live');
     if (live) {
       var n = Array.prototype.filter.call(cards, function (c) { return !c.hidden; }).length;
-      live.textContent = n + (n === 1 ? ' project' : ' projects');
+      live.textContent = n + (n === 1 ? T.one : T.many);
     }
   }
   if (buttons.length) {
@@ -47,7 +59,7 @@
       var text = el.dataset.copy;
       var done = function () {
         var old = el.innerHTML;
-        el.textContent = 'Copied';
+        el.textContent = T.copied;
         setTimeout(function () { el.innerHTML = old; }, 1400);
       };
       if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done); } else { done(); }
@@ -69,20 +81,20 @@
         f[n].setAttribute('aria-invalid', String(bad));
         if (bad) { ok = false; }
       });
-      if (!ok) { say('Please fill in your name, a valid email and a message.', 'err'); return; }
+      if (!ok) { say(T.invalid, 'err'); return; }
       var data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
       var endpoint = form.dataset.endpoint;
       if (!endpoint) {
         var body = data.message + '\n\n— ' + data.name + ' (' + data.email + ')';
-        location.href = 'mailto:' + form.dataset.mailto + '?subject=' + encodeURIComponent('Message from ' + data.name) + '&body=' + encodeURIComponent(body);
-        say('Your email app should open with the message ready to send.', 'ok');
+        location.href = 'mailto:' + form.dataset.mailto + '?subject=' + encodeURIComponent(T.subject + data.name) + '&body=' + encodeURIComponent(body);
+        say(T.mail, 'ok');
         return;
       }
       var btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true; say('Sending…');
+      btn.disabled = true; say(T.sending);
       fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
-        .then(function (r) { if (!r.ok) { throw new Error(r.status); } form.reset(); say('Thank you! Your message was sent.', 'ok'); })
-        .catch(function () { say('Sorry, sending failed. Please email me directly.', 'err'); })
+        .then(function (r) { if (!r.ok) { throw new Error(r.status); } form.reset(); say(T.thanks, 'ok'); })
+        .catch(function () { say(T.failed, 'err'); })
         .then(function () { btn.disabled = false; });
     });
   }

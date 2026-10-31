@@ -18,6 +18,7 @@ A dark, minimal, deep-pink multi-page site (inspired by a one-page CV layout: pi
 | `/skills/` | Skills grouped by area |
 | `/education/` | Degrees and programs |
 | `/contact/` | Email, LinkedIn, GitHub |
+| `/fa/…` | The same pages in Persian (right to left); an EN / فا switch in the top bar links the two versions |
 
 ## How the site is made
 
@@ -29,7 +30,8 @@ A dark, minimal, deep-pink multi-page site (inspired by a one-page CV layout: pi
 │   ├── js/main.js             project filter, reveal on scroll, copy-email button
 │   └── img/                   portrait and project figures (WebP)
 └── tools/
-    ├── content.py             every text of the site (profile, projects, experience ...)
+    ├── content.py             every text of the site (profile, projects, experience ...), in English
+    ├── i18n.py, fa_*.py/.tsv  Persian version: English text -> Persian text table, applied to the generated pages
     └── build.py               generates the HTML pages from content.py
 ```
 
