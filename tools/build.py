@@ -121,6 +121,12 @@ SKILL_ICON = {
     "Docker": ("brand", "docker"), "Docker Compose": ("brand", "docker"), "Streamlit": ("brand", "streamlit"),
     "Contrastive learning": ("line", "repeat"), "Explainable AI (XAI)": ("line", "eye"), "Graph neural networks": ("line", "network"),
     "Physics-informed neural networks": ("line", "activity"),
+    "PHP": ("line", "code"), "WordPress": ("line", "globe"), "WordPress plugin development": ("line", "box"),
+    "WooCommerce": ("line", "box"), "JavaScript": ("line", "code"), "Search relevance ranking": ("line", "search"),
+    "Persian text processing": ("line", "file"),
+    "Instance segmentation": ("line", "image"), "Oriented bounding boxes (OBB)": ("line", "crosshair"),
+    "Thermal and aerial imagery": ("line", "sun"), "Data augmentation": ("line", "layers"),
+    "Dataset curation and annotation": ("line", "check"),
     # tags used under projects, experience and research
     "Alembic": ("line", "database"), "Bale API": ("line", "message"), "CNN": ("line", "layers"), "CRNN": ("line", "layers"),
     "CTC loss": ("line", "trend"), "Excel": ("line", "chart"), "Faster Whisper": ("line", "mic"), "GAN": ("line", "activity"),
@@ -447,7 +453,7 @@ def flow_html(steps):
 def page_project(i, p):
     facts = "".join(f'<div class="fact"><b>{esc(a_)}</b><span>{esc(b_)}</span></div>' for a_, b_ in p["facts"])
     repo_btn = (f'<a class="btn" href="{PROFILE["github"]}/{p["repo"]}" target="_blank" rel="noopener">{icon("github")} View on GitHub</a>'
-                if p.get("repo") else '<span class="pill dark">Company project · no public repository</span>')
+                if p.get("repo") else f'<span class="pill dark">{esc(p.get("closed", "Company project · no public repository"))}</span>')
     role = f'<p class="role-line"><b>Role</b> {esc(p["role"])}</p>' if p.get("role") else ""
 
     if p.get("overview"):
@@ -460,7 +466,7 @@ def page_project(i, p):
         steps = "".join(f'<li class="step reveal"><span class="n">{n}</span><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></li>' for n, (t, d) in enumerate(p["approach"], 1))
         approach = f'<h2>Approach</h2><ol class="steps">{steps}</ol>'
     elif p.get("built"):
-        approach = f'<h2>What I built</h2>{ticks(p["built"])}'
+        approach = f'<h2>{esc(p.get("built_title", "What I built"))}</h2>{ticks(p["built"])}'
 
     decisions = ""
     if p.get("decisions"):

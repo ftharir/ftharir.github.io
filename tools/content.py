@@ -36,6 +36,31 @@ AREAS = [
 
 PROJECTS = [
     {
+        "slug": "digi-search", "period": "Nov 2026",
+        "title": "Digi Search: Persian smart search for WooCommerce",
+        "color": "peach", "areas": ["backend"], "label": "WordPress plugin",
+        "closed": "Commercial plugin · source not public",
+        "summary": "A WordPress plugin that gives WooCommerce stores a smart, Persian-aware product search with live suggestions.",
+        "lead": "Freelance project: a standalone WordPress plugin that replaces a WooCommerce store's default search with a smart search built for Persian product names.",
+        "facts": [("WordPress", "standalone plugin"), ("WooCommerce", "product search"), ("Persian", "language-aware search"), ("Live", "suggestions while typing")],
+        "tech": ["PHP", "WordPress", "WooCommerce", "JavaScript", "REST APIs", "Persian text processing", "Search relevance ranking", "pytest"],
+        "problem": "A store's default search only finds exact words. Persian shoppers type with different letter forms, joined or separated words and typos, and expect related products, so many searches come back empty or in the wrong order.",
+        "built_title": "What it does",
+        "built": [
+            "Live suggestions that update with every letter the shopper types.",
+            "Understands Persian writing: Arabic and Persian letter forms, joined or separated words and common typos.",
+            "Finds products that share a meaningful part of a word, not only exact matches.",
+            "Ranks results by how well each product name matches, and puts products that match more of the words first.",
+            "Related categories, recent searches and popular searches, without storing any personal data.",
+            "A results page with sorting by relevance, newest and price.",
+            "Works with any theme, installs from a ZIP file in the WordPress dashboard, and turning it off brings back the store's original search.",
+        ],
+        "results": [
+            "The plugin is planned as a commercial product, so its source code is not public.",
+        ],
+        "images": [],
+    },
+    {
         "slug": "ai-resume-evaluation-service", "period": "Aug 2026 – Nov 2026",
         "title": "AI technical resume evaluation service",
         "color": "sky", "areas": ["ml", "backend"], "label": "Sharif Setup · LLM service",
@@ -308,11 +333,12 @@ EXPERIENCE = [
         "period": "May 2026 – present", "kind": "freelance", "color": "green",
         "bullets": [
             "Working as a freelance AI software engineer on Parscoders for the past six months, taking client projects from requirements to delivery.",
+            "Digi Search: a WordPress plugin that brings smart, Persian-aware product search with live suggestions to WooCommerce stores.",
             "VoiceLedger: an AI-powered organizational knowledge assistant that collects voice reports through a Bale bot, with a Persian speech-to-text pipeline.",
             "Telegram services platform: an asynchronous service marketplace with wallet, orders and an external API.",
             "Cost allocation prototype: a Python pipeline from several Excel sources to Power BI reporting datasets.",
         ],
-        "tech": ["FastAPI", "PostgreSQL", "Redis", "Docker", "Faster Whisper", "pandas", "Power BI"],
+        "tech": ["FastAPI", "PostgreSQL", "Redis", "Docker", "Faster Whisper", "pandas", "Power BI", "PHP", "WordPress"],
     },
     {
         "role": "AI Software Engineering Intern · Project Owner",
@@ -425,8 +451,9 @@ SKILLS = [
     ("Programming and software engineering", "peach", ["Python", "Java", "SQL", "FastAPI", "REST APIs", "Pydantic", "OpenAPI / Swagger", "Object-oriented programming", "Git", "Linux"]),
     ("Machine learning and deep learning", "lav", ["scikit-learn", "PyTorch", "TensorFlow", "Neural networks", "CNNs", "RNNs", "LSTM", "Transformers", "Transfer learning", "GANs", "Diffusion models", "Model evaluation"]),
     ("LLMs and generative AI", "sky", ["Large language models", "Prompt engineering", "Retrieval-augmented generation (RAG)", "Hugging Face Transformers", "LLM API integration", "Structured outputs", "LLM-based evaluation"]),
-    ("Computer vision", "pink", ["OpenCV", "Image processing", "Object detection", "Object tracking", "YOLO", "Medical image analysis"]),
-    ("Data engineering and analytics", "butter", ["pandas", "NumPy", "SciPy", "Data processing", "Data cleaning", "Data validation", "Document parsing (PDF / DOCX)", "Power BI"]),
+    ("Computer vision", "pink", ["OpenCV", "Image processing", "Object detection", "Instance segmentation", "Oriented bounding boxes (OBB)", "Object tracking", "YOLO", "Thermal and aerial imagery", "Medical image analysis"]),
+    ("Data engineering and analytics", "butter", ["pandas", "NumPy", "SciPy", "Data processing", "Data cleaning", "Data validation", "Data augmentation", "Dataset curation and annotation", "Document parsing (PDF / DOCX)", "Power BI"]),
+    ("Web and WordPress", "peach", ["PHP", "WordPress plugin development", "WooCommerce", "JavaScript", "Search relevance ranking", "Persian text processing"]),
     ("Backend, databases and deployment", "green", ["PostgreSQL", "SQLAlchemy", "Redis", "Docker", "Docker Compose", "Streamlit"]),
     ("AI research", "lav", ["Contrastive learning", "Explainable AI (XAI)", "Graph neural networks", "Physics-informed neural networks"]),
 ]
