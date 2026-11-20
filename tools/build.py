@@ -285,7 +285,7 @@ def page_home():
       <li>{icon("mail")}<a href="mailto:{PROFILE["email"]}">{esc(PROFILE["email"])}</a></li>
       <li>{icon("pin")}<span>{esc(PROFILE["location"])}</span></li>
     </ul>
-    <div class="now-chip"><i></i>Now: building an LLM-based resume evaluation service at Sharif Setup</div>
+    <div class="now-chip"><i></i>Now: freelance AI software engineer on Parscoders</div>
     <div class="btn-row" style="margin-top:24px"><a class="btn" href="/projects/">See my projects {icon("arrow")}</a><a class="btn ghost" href="/contact/">Get in touch</a></div>
   </div>
 </section>
@@ -299,9 +299,9 @@ def page_home():
     <p><a class="btn ghost" href="/education/">Education {icon("arrow")}</a></p>
 
     <h2 class="tag c-green" style="margin-top:44px">Experience</h2>
-    <div class="entry reveal"><div class="when">2026 – present</div><b>AI Software Engineering Intern · Project Owner</b><span>Sharif Setup, generative AI startup</span></div>
+    <div class="entry reveal"><div class="when">2026 – present</div><b>Freelance AI software engineer</b><span>Parscoders, freelance marketplace</span></div>
+    <div class="entry reveal"><div class="when">2026</div><b>AI Software Engineering Intern · Project Owner</b><span>Sharif Setup, generative AI startup</span></div>
     <div class="entry reveal"><div class="when">2023 – 2024</div><b>Data Scientist Bootcamp trainee</b><span>Fanap, selected through Quera's Hafez competition</span></div>
-    <div class="entry reveal"><div class="when">2026</div><b>Freelance AI software engineer</b><span>Voice-report assistant, Telegram platform, cost allocation</span></div>
     <p><a class="btn ghost" href="/experience/">Experience {icon("arrow")}</a></p>
   </div>
   <div>
@@ -348,7 +348,7 @@ def page_about():
 <div class="grid-2">
   <div class="box sand reveal"><h3>Based in</h3><p>{esc(PROFILE["location"])}</p></div>
   <div class="box sand reveal"><h3>Education</h3><p>B.Sc. Computer Engineering (2022 – 2026), with advanced AI and machine-learning courses audited at Sharif University of Technology.</p></div>
-  <div class="box sand reveal"><h3>Now</h3><p>AI Software Engineering Intern at Sharif Setup: delivered a data labeling platform, now building an LLM-based resume evaluation service.</p></div>
+  <div class="box sand reveal"><h3>Now</h3><p>Freelance AI software engineer on Parscoders. Before that, a 12-week AI software engineering internship at Sharif Setup, where I delivered a data labeling platform and an LLM-based resume evaluation service.</p></div>
   <div class="box sand reveal"><h3>Research</h3><p>Predictive maintenance with Transformers and diffusion models; computer vision; neuroimaging with graph neural networks.</p></div>
 </div>
 <h2>Where to go next</h2>

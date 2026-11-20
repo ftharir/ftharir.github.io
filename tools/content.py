@@ -36,13 +36,13 @@ AREAS = [
 
 PROJECTS = [
     {
-        "slug": "ai-resume-evaluation-service", "period": "Aug 2026 – now",
+        "slug": "ai-resume-evaluation-service", "period": "Aug 2026 – Nov 2026",
         "title": "AI technical resume evaluation service",
         "color": "sky", "areas": ["ml", "backend"], "label": "Sharif Setup · LLM service",
-        "metric": "in progress",
+        "metric": "completed",
         "summary": "An LLM-based service that scores candidate resumes against a job description with evidence-based reasoning.",
         "lead": "Internship project at Sharif Setup: a service that evaluates candidate resumes (PDF or DOCX) against job descriptions and team-specific requirements and explains its score instead of counting keywords.",
-        "facts": [("1–10", "match score with reasoning"), ("PDF / DOCX", "resume formats"), ("FastAPI", "REST service"), ("In progress", "status")],
+        "facts": [("1–10", "match score with reasoning"), ("PDF / DOCX", "resume formats"), ("FastAPI", "REST service"), ("Completed", "status")],
         "tech": ["Python", "FastAPI", "LLMs", "Pydantic", "Streamlit", "REST APIs", "Docker"],
         "problem": "Keyword matching rejects good candidates and accepts weak ones. A hiring team needs a score that reflects the actual requirements of the role, with the evidence behind it.",
         "built": [
@@ -52,7 +52,7 @@ PROJECTS = [
             "A provider-agnostic model layer connected to the organization's internal LLM API: configurable providers, Pydantic-validated structured outputs, retry and timeout handling, and latency and token-usage logging.",
         ],
         "results": [
-            "The project is still in progress, so there are no final results to report yet.",
+            "Delivered by the end of the 12-week internship as a working REST service with a Streamlit interface.",
             "Company project: there is no public repository.",
         ],
         "flow": ["Resume (PDF / DOCX)", "Parsing", "Job requirements", "Scoring engine (LLM)", "Score 1–10 with evidence", "PDF report"],
@@ -303,9 +303,21 @@ PROJECTS = [
 
 EXPERIENCE = [
     {
+        "role": "Freelance AI software engineer",
+        "org": "Parscoders — freelance marketplace",
+        "period": "May 2026 – present", "kind": "freelance", "color": "green",
+        "bullets": [
+            "Working as a freelance AI software engineer on Parscoders for the past six months, taking client projects from requirements to delivery.",
+            "VoiceLedger: an AI-powered organizational knowledge assistant that collects voice reports through a Bale bot, with a Persian speech-to-text pipeline.",
+            "Telegram services platform: an asynchronous service marketplace with wallet, orders and an external API.",
+            "Cost allocation prototype: a Python pipeline from several Excel sources to Power BI reporting datasets.",
+        ],
+        "tech": ["FastAPI", "PostgreSQL", "Redis", "Docker", "Faster Whisper", "pandas", "Power BI"],
+    },
+    {
         "role": "AI Software Engineering Intern · Project Owner",
         "org": "Sharif Setup — Generative AI startup",
-        "period": "August 2026 – present", "kind": "12-week internship", "color": "sky", "logo": "sharifsetup.webp",
+        "period": "August 2026 – November 2026", "kind": "12-week internship", "color": "sky", "logo": "sharifsetup.webp",
         "sections": [
             {
                 "title": "AI-powered data labeling platform", "status": "Completed",
@@ -317,27 +329,16 @@ EXPERIENCE = [
                 "link": "/projects/ai-data-labeling-platform/",
             },
             {
-                "title": "AI-powered technical resume evaluation service", "status": "In progress",
+                "title": "AI-powered technical resume evaluation service", "status": "Completed",
                 "bullets": [
-                    "Developing an LLM-based service that evaluates candidate resumes (PDF/DOCX) against job descriptions and team-specific requirements, producing a 1–10 match score with evidence-based reasoning instead of simple keyword matching.",
-                    "Designing a FastAPI REST service with resume parsing, requirement processing, a scoring engine and downloadable PDF report generation, plus a decoupled Streamlit MVP interface.",
-                    "Building a provider-agnostic model layer on the organization's internal LLM API: configurable providers, Pydantic-validated structured outputs, retry and timeout handling, and latency and token-usage logging.",
+                    "Developed an LLM-based service that evaluates candidate resumes (PDF/DOCX) against job descriptions and team-specific requirements, producing a 1–10 match score with evidence-based reasoning instead of simple keyword matching.",
+                    "Designed a FastAPI REST service with resume parsing, requirement processing, a scoring engine and downloadable PDF report generation, plus a decoupled Streamlit MVP interface.",
+                    "Built a provider-agnostic model layer on the organization's internal LLM API: configurable providers, Pydantic-validated structured outputs, retry and timeout handling, and latency and token-usage logging.",
                 ],
                 "tech": ["Python", "FastAPI", "LLMs", "Pydantic", "Streamlit", "REST APIs", "Docker"],
                 "link": "/projects/ai-resume-evaluation-service/",
             },
         ],
-    },
-    {
-        "role": "Freelance AI software engineer",
-        "org": "Independent projects",
-        "period": "Selected freelance work", "kind": "freelance", "color": "green",
-        "bullets": [
-            "VoiceLedger: an AI-powered organizational knowledge assistant that collects voice reports through a Bale bot, with a Persian speech-to-text pipeline.",
-            "Telegram services platform: an asynchronous service marketplace with wallet, orders and an external API.",
-            "Cost allocation prototype: a Python pipeline from several Excel sources to Power BI reporting datasets.",
-        ],
-        "tech": ["FastAPI", "PostgreSQL", "Redis", "Docker", "Faster Whisper", "pandas", "Power BI"],
     },
     {
         "role": "Data Scientist Bootcamp trainee",

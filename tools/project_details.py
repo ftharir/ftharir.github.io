@@ -4,12 +4,12 @@ Keys: role, overview[], approach[(title, text)], decisions[(title, text)], metri
 insights[(title, text)], limits[], next[], images[(source, file, caption)] (only where a figure really helps)."""
 
 DETAILS = {
-    # ------------------------------------------------------------------ internship: resume evaluation (in progress)
+    # ------------------------------------------------------------------ internship: resume evaluation (completed)
     "ai-resume-evaluation-service": {
         "role": "Project owner · AI Software Engineering Intern, Sharif Setup",
         "overview": [
             "Screening resumes by keyword rewards the candidates who copy the wording of a job post, not the ones who fit the role. This service evaluates a candidate's resume (PDF or DOCX) against the job description and the requirements of the specific team, and returns a match score from 1 to 10 together with the evidence that justifies it.",
-            "It is built as a small, decoupled system: a FastAPI REST service that does the work, a Streamlit MVP on top of it, and a model layer that is independent of any single LLM provider. The project is still in progress, so this page describes the design rather than final results.",
+            "It is built as a small, decoupled system: a FastAPI REST service that does the work, a Streamlit MVP on top of it, and a model layer that is independent of any single LLM provider. The service was delivered by the end of the internship; this page describes its design.",
         ],
         "approach": [
             ("Parse the resume", "PDF and DOCX files are parsed into structured text, so the model sees sections (experience, skills, education) and not a raw dump."),
@@ -27,8 +27,8 @@ DETAILS = {
         ],
         "metrics_title": "Status",
         "metrics": [("Score", "1 to 10", "with evidence-based reasoning"), ("Input", "PDF and DOCX", "resumes and job descriptions"),
-                    ("Output", "JSON and PDF report", "through the REST API"), ("Stage", "In progress", "internship project")],
-        "limits": ["No evaluation numbers yet: the scoring quality still has to be validated against human judgements.",
+                    ("Output", "JSON and PDF report", "through the REST API"), ("Status", "Completed", "within the 12-week internship")],
+        "limits": ["No evaluation numbers: the scoring quality has not yet been validated against human judgements.",
                    "Company project: there is no public repository."],
         "next": ["Validate the scores against recruiters' own ratings.", "Tune the prompts and the requirement processing on real examples.", "Harden the service for deployment (Docker)."],
         "images": [],
